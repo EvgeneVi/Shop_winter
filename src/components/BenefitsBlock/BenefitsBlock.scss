@@ -1,0 +1,111 @@
+@import "../../assets/styles/variables";
+.benefits-block {
+  font-family: $font;
+  margin: 47px auto 0 auto;
+  padding: 0 calc(20px - clamp(0px, 98vw - 1355px, 20px));
+  display: flex;
+  justify-content: center;
+  max-width: 1360px;
+  flex-wrap: wrap;
+
+  column-gap: 25px;
+  row-gap: 20px;
+  & * {
+    letter-spacing: -0.3px;
+  }
+
+  &__item {
+    // width: 50px;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(auto-fit, minmax(0, min-content));
+    place-items: center center; //Шорткат для указания значений сразу и для align-items и для justify-items
+    text-align: center;
+    // flex-direction: column;
+    // align-items: center;
+    // flex: 1 1 0;
+    width: max(calc(50% - 12.5px), 374px);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height: clamp(454px, 60vw, 789px);
+    &::after {
+      top: 0;
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 100%;
+      // background: linear-gradient(0deg, #A7A7A7 0%, #A7A7A7 100%);
+      background: #000;
+      opacity: 0.4;
+    }
+    & > * {
+      z-index: 1;
+    }
+    & > :first-child {
+      margin-top: clamp(140px, 25vw - 60px, 287px);
+    }
+  }
+  &__icon {
+    display: block;
+    height: clamp(64px, 6vw, 75px);
+    width: 100%;
+  }
+
+  & h1 {
+    text-align: center;
+    margin-top: 25px;
+    color: #ffffff;
+    font-size: 32px;
+    & > .title-for-mobile {
+      font-size: 0;
+    }
+  }
+  & p {
+    margin-top: 21px;
+    color: #ffffff;
+    font-size: 16px;
+    letter-spacing: -0.3px;
+    max-width: 90%;
+  }
+  &__btn-join {
+    width: clamp(278px, 25vw, 292px);
+    height: 50px;
+    &.black-border {
+      border: 0;
+    }
+  }
+  &__btn-join,
+  & .send-mail {
+    margin-top: 29px;
+  }
+  @media screen and (max-width: $bp_xl) {
+    &__icon-convert {
+      visibility: hidden;
+      height: 12px;
+    }
+    & p {
+      margin-top: 11px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    & h1 {
+      font-size: 21px;
+      margin-top: 17px;
+    }
+    & h1[data-mobiletxt] {
+      font-size: 0;
+      & > .title-for-mobile {
+        display: inherit;
+        font-size: 21px;
+        width: 100%;
+        margin-bottom: 11px;
+      }
+      &::after {
+        content: attr(data-mobiletxt);
+
+        font-size: 32px;
+      }
+    }
+  }
+}

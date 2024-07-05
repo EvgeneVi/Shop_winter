@@ -1,0 +1,44 @@
+.promo-product-item {
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  position: relative;
+  align-items: center;
+  &_brand-logo {
+    position: absolute;
+    width: clamp(56px, 6vw, 80px);
+    height: clamp(56px, 6vw, 80px);
+    background-size: contain;
+    inset: clamp(15px, 2.65vw, 36px) 0 0 clamp(15px, 2vw, 36px);
+  }
+  &_img {
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: clamp(200px, 30vw, 395px);
+  }
+  &_name {
+    margin-top: clamp(25px, 2.3vw, 30px);
+    font-size: 21px;
+  }
+  &_text {
+    max-width: 668px;
+    color: #828282;
+    font-size: 14px;
+    // margin-top: 15px;
+    margin: 15px 20px 0 20px;
+    text-align: center;
+    line-height: 25px;
+  }
+}
+.popular-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 75px;
+  &_title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 26px;
+  }
+}

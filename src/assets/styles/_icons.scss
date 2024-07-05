@@ -1,0 +1,81 @@
+.icon-local {
+  background: url("../img/navbar/location.png") no-repeat;
+  width: 14px;
+  height: 20px;
+}
+.icon-array {
+  background: url("../img/navbar/array.png");
+  width: 10px;
+  height: 7px;
+}
+.icon-array-right {
+  background: url("../img/icons/general/array-right.png") center/cover no-repeat;
+  width: 4px;
+  height: 10px;
+}
+.icon-delivery {
+  background: url("../img/navbar/delivery-truck.png") center/contain no-repeat;
+  width: 26px;
+  height: 26px;
+}
+.icon-pay {
+  background: url("../img/navbar/card.png") no-repeat;
+  width: 20px;
+  height: 17px;
+}
+
+.icon-return {
+  background: url("../img/navbar/case.png") no-repeat;
+  width: 20px;
+  height: 20px;
+}
+
+.icon-entry {
+  width: 26px;
+  height: 26px;
+  background: url("../img/navbar/Ellipse.svg") no-repeat center/contain;
+}
+.icon-favorites {
+  width: clamp(20px, 4.2vw, 24px);
+  height: 22.8px;
+  background: url("../img/navbar/Vector.png") no-repeat center/contain;
+}
+.icon-trash {
+  width: clamp(20px, 4.2vw, 24px);
+  height: 24.4px;
+  background: url("../img/navbar/Group.png") no-repeat center/contain;
+}
+.icon-search {
+  width: clamp(17.5px, 4.2vw, 24px);
+  height: min(100%, 26px);
+  background: url("../img/navbar/search.png") no-repeat center/contain;
+}
+.icon-login {
+  height: 24px;
+  width: 24px;
+  background: url("../img/navbar/login.png") no-repeat;
+}
+.icon-login-small {
+  height: 16px;
+  width: 16px;
+  background: url("../img/navbar/login.png") no-repeat center / contain;
+}
+.icon-exit {
+  width: 18.75px;
+  height: 20px;
+  background: url("../../assets/img/navbar/exit.svg") no-repeat;
+}
+.icon-favorite {
+  position: absolute;
+  background: #ffffff url("../img/icons/general/Vector.png") no-repeat center;
+  width: 40px;
+  height: 40px;
+  right: 15px;
+  top: 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  &.active {
+    background: #000000 url("../img/icons/general/Vector-active.png") no-repeat
+      center;
+  }
+}

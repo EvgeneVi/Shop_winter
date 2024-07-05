@@ -1,0 +1,47 @@
+@import "../../../assets/styles/_variables.scss";
+@import "../../../assets/styles/_icons.scss";
+.up-menu {
+  font-size: 12px;
+  // margin: 0 auto;
+  background: $nav-background;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  &__wrap {
+    display: flex;
+    width: 1360px;
+    justify-content: space-between;
+
+    & > ul {
+      display: flex;
+      column-gap: 26px;
+
+      & > li {
+        display: flex;
+        align-items: center;
+        color: #f2f2f2;
+        column-gap: 12px;
+        & > a {
+          color: inherit;
+        }
+      }
+    }
+  }
+  &__left {
+  }
+  &__btn-drop {
+  }
+  @media screen and (max-width: $bp_xxl) {
+    & .nav-location {
+      &__text {
+        display: none;
+      }
+    }
+    & ul {
+      column-gap: 20px;
+    }
+  }
+  @media screen and (max-width: $bp_xl) {
+    display: none;
+  }
+}

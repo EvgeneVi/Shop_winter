@@ -1,0 +1,42 @@
+@import "../../../assets/styles/variables.scss";
+.custom-slider {
+  position: relative;
+  display: flex;
+  &__btn {
+    display: flex;
+    align-items: center;
+    width: 32px;
+    height: 98px;
+    background: #ffffff;
+    position: absolute;
+    z-index: 1;
+    opacity: 90%;
+    margin: auto 0;
+    cursor: pointer;
+    &:before {
+      position: absolute;
+      display: block;
+      content: "";
+      height: 21.73px;
+      width: 10.29px;
+      background: url("../../../assets/img/sliders/array.png") center/cover
+        no-repeat;
+    }
+
+    &.prev {
+      inset: 0 0;
+      &:before {
+        right: 13px;
+      }
+    }
+    &.next {
+      inset: 0 0 0 auto;
+      &:before {
+        left: 13px;
+        transform: rotate(180deg);
+      }
+    }
+
+    // left: calc(($max-w-content - $max-w)/2);
+  }
+}

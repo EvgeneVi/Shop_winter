@@ -1,0 +1,42 @@
+@mixin btn-static($bg, $txt, $br) {
+  background: $bg;
+  color: $txt;
+  border: 1px solid $br;
+}
+@mixin btn-txt($bg, $txt, $hoverTxt) {
+  background: $bg;
+  color: $txt;
+  border: 1px solid $txt;
+  &:hover {
+    color: $hoverTxt;
+  }
+}
+@mixin btn-bg($bg, $txt) {
+  background: $bg;
+  color: $txt;
+  border: 1px solid $bg;
+  &:hover {
+    background: $txt;
+    color: $bg;
+  }
+}
+.btn-custom {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  flex-wrap: wrap;
+  align-content: center;
+  &.black {
+    @include btn-bg(#000, #fff);
+    &.disable {
+      @include btn-static(#ced4d7, #828b8d, #ced4d7);
+    }
+  }
+  &.black-border {
+    @include btn-txt(#fff, #000, #828b8d);
+  }
+  &.red {
+  }
+  &.red-border {
+  }
+}

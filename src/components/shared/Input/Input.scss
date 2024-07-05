@@ -1,0 +1,42 @@
+@import "../../../assets/styles/variables";
+.inpt-txt {
+  font-family: $font;
+  &.inpt-form {
+    padding: 0 20px;
+    // width: 310px;
+    height: 48px;
+    border: 1px #ced4d7 solid;
+    font-size: 18px;
+  }
+}
+.inpt-check {
+  &.inpt-form {
+    order: -1;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    border: 0;
+    outline: none;
+    &::before,
+    &::after {
+      top: 0;
+      left: 0;
+      position: absolute;
+    }
+    &::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border: 2px black solid;
+      z-index: 999;
+    }
+    &:checked:after {
+      content: url("../../../assets/img/icons/general/checked.svg");
+      width: inherit;
+      height: inherit;
+      background-color: black;
+      text-align: center;
+      align-content: center;
+    }
+  }
+}

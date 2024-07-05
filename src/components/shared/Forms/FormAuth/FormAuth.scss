@@ -1,0 +1,181 @@
+@import "../../../../assets/styles/variables.scss";
+.dialog-form {
+  display: flex;
+  position: relative;
+  margin-top: 230px;
+  background-color: transparent;
+  flex-direction: column;
+  & * {
+    font-family: $font;
+  }
+  & .modal-window__close {
+    top: 37px;
+    right: 40px;
+    &.small {
+      top: 29px;
+      right: 25px;
+    }
+  }
+}
+.dialog-form.small {
+  & .wrap-forms {
+    width: 496px;
+    height: 448px;
+  }
+}
+.dialog-form.active {
+  & button.regist {
+    color: #000;
+    &::after {
+      position: absolute;
+      bottom: -10px;
+      content: "";
+      width: 100%;
+      border-bottom: 4px solid $nav-background;
+    }
+  }
+  & .form-login.regist {
+    display: flex;
+  }
+}
+.dialog-form:not(.active) {
+  & button.auth {
+    color: #000;
+    &::after {
+      position: absolute;
+      bottom: -10px;
+      content: "";
+      width: 100%;
+      border-bottom: 4px solid $nav-background;
+    }
+  }
+  & .form-login.auth {
+    display: flex;
+  }
+}
+.types-form {
+  display: none;
+  background-color: white;
+  column-gap: 19px;
+  padding: 32px 0 0 20px;
+  flex-grow: 1;
+  & > button {
+    color: #828b8d;
+    font-size: 16px;
+    position: relative;
+  }
+}
+.wrap-forms {
+  display: flex;
+  width: 990px;
+  height: 553px;
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  padding: 45px 71px 45px 72px;
+  width: 352px;
+  flex-basis: 0;
+  flex-grow: 1;
+  // margin-top: 2px;
+  &.auth,
+  &.restore-pass {
+    background-color: white;
+  }
+  &.regist {
+    background-color: #f2f2f2;
+  }
+  &__subtitle {
+    font-size: 14px;
+    letter-spacing: -0.3px;
+  }
+  &__title {
+    letter-spacing: -0.5px;
+    font-size: 21px;
+  }
+  & > form {
+    letter-spacing: -0.3px;
+    display: flex;
+    flex-direction: column;
+    & > label {
+      font-size: 12px;
+      margin: 32px 0 5px 0;
+      color: #828b8d;
+    }
+    & > button {
+      font-size: 16px;
+      margin-bottom: 17px;
+      height: 50px;
+      // width: 352px;
+    }
+  }
+  &__option {
+    display: flex;
+    margin: 22px 0 40px 0;
+    align-items: center;
+    column-gap: 10px;
+    & > label {
+      font-size: 14px;
+    }
+    & > a {
+      font-size: 14px;
+      text-decoration: none;
+      margin-left: auto;
+      color: #828b8d;
+    }
+  }
+  &__timer {
+    display: flex;
+    justify-content: center;
+    & > span {
+      font-size: 14px;
+      width: 63px;
+    }
+  }
+}
+@media screen and (min-width: $bp_xl) {
+  .dialog-form.small {
+    & .modal-window__close {
+      top: 29px;
+      right: 25px;
+      background-color: transparent;
+      &::after {
+        color: #000;
+        font-weight: bold;
+      }
+    }
+  }
+}
+@media screen and (max-width: $bp_xl) {
+  .dialog-form {
+    &.small .wrap-forms,
+    .wrap-forms {
+      width: 371px;
+      height: 100%;
+    }
+    &:not(.small) .types-form {
+      display: flex;
+    }
+    & .modal-window__close {
+      font-size: 13.5px;
+      top: 22px;
+      right: 20px;
+    }
+  }
+
+  .form-login {
+    padding: 30px 20px 30px 20px;
+    &__title {
+      display: none;
+    }
+  }
+  .form-login.auth,
+  .form-login.regist {
+    display: none;
+    background-color: white;
+    & label:first-of-type {
+      margin: 0 0 5px 0;
+    }
+  }
+}

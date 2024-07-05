@@ -1,0 +1,57 @@
+@import "../../../assets/styles/_variables.scss";
+.nav-location {
+  display: flex;
+  column-gap: 26px;
+  font-size: 12px;
+
+  & > li {
+    display: flex;
+    align-items: center;
+    position: relative;
+    // column-gap: clamp(15px, 2vw, 12px);
+
+    & > a {
+      color: inherit;
+    }
+  }
+  &__btn {
+    cursor: pointer;
+    margin-left: clamp(0px, calc(0.35vw - 3.6px), 3px);
+    display: flex;
+    align-items: center;
+    & > span {
+      white-space: pre;
+    }
+    & > i {
+      // filter: brightness(0) saturate(100%);
+      margin-left: clamp(0px, calc(0.8vw - 4px), 10px);
+    }
+  }
+  &__name-city {
+    margin-right: clamp(5px, calc(0.8vw - 4px), 10px);
+  }
+  @media screen and (max-width: $bp_xxl) {
+    & {
+      column-gap: 25px;
+    }
+  }
+  @media screen and (max-width: $bp_xl) {
+    & {
+      // display: flex;
+      padding: 23px 20px 28px 50px;
+      flex-wrap: wrap;
+      row-gap: 23px;
+      // justify-content: center;
+      filter: brightness(0) saturate(100%);
+      & > li:first-of-type {
+        width: 100%;
+        column-gap: 15px;
+      }
+    }
+
+    & i.icon-local {
+      position: absolute;
+      right: calc(100% + 10px);
+    }
+  }
+}

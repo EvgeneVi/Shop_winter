@@ -1,0 +1,41 @@
+@import "./variables.scss";
+@font-face {
+  font-family: "Grtsk Peta";
+  src: local("Grtsk Peta"),
+    url("../fonts/GrtskPeta-Medium.woff2") format("woff2"),
+    url("../fonts/GrtskPeta-Medium.woff") format("woff"),
+    url("../fonts/GrtskPeta-Medium.ttf") format("ttf"),
+    url("../fonts/GrtskPeta-Medium.eot") format("eot");
+}
+* {
+  font-family: "Grtsk Peta";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  border: 0;
+  background-color: transparent;
+}
+li {
+  list-style: none;
+}
+body:has(dialog[open]) {
+  @media screen and (min-width: $bp_xl) {
+    overflow: hidden;
+    padding-right: 17px;
+  }
+}
+main {
+  // overflow: hidden;
+}
+.title-center {
+  text-align: center;
+  align-content: center;
+  font-size: clamp(21px, 2.5vw, 32px);
+  margin: 0 calc(20px - clamp(0px, 100vw - 1340px, 20px));
+}

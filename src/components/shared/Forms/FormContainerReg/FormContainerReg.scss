@@ -1,0 +1,38 @@
+// .dialog-form {
+//   display: flex;
+//   position: relative;
+//   margin-top: 94px;
+//   background-color: transparent;
+//   width: 990px;
+//   height: 553px;
+//   &__close {
+//     cursor: pointer;
+//     position: absolute;
+//     display: flex;
+//     width: 40px;
+//     height: 40px;
+//     background-color: #000;
+//     top: 37px;
+//     right: 40px;
+//     &::before,
+//     &::after {
+//       position: absolute;
+//       display: flex;
+//       top: 0;
+//       left: 0;
+//       right: 0;
+//       bottom: 0;
+//       margin: auto;
+//       content: "";
+//       width: 20px;
+//       height: 2px;
+//       background-color: white;
+//     }
+//     &::before {
+//       transform: rotate(45deg);
+//     }
+//     &::after {
+//       transform: rotate(-45deg);
+//     }
+//   }
+// }

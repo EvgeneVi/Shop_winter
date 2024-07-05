@@ -1,0 +1,100 @@
+@import "../../../assets/styles/variables.scss";
+.nav-login-panel {
+  & .drop-account {
+    display: none;
+  }
+  & > a.active + .drop-account {
+    z-index: 1;
+    display: block;
+    position: absolute;
+    left: 9px;
+    top: calc(100% + 11px);
+    &::before,
+    &::after {
+      position: absolute;
+      display: block;
+      content: "";
+      width: 0;
+      height: 0;
+    }
+    &::before {
+      left: 17px;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 9px solid #f9f9f9;
+      bottom: calc(100% - 2px);
+      z-index: -1;
+    }
+    &::after {
+      bottom: calc(100% - 1.9px);
+      left: 18.1px;
+      border-left: 3.8px solid transparent;
+      border-right: 3.8px solid transparent;
+      border-bottom: 7.1px solid #fff;
+    }
+    & > div {
+      border: 1px #f9f9f9 solid;
+      &:first-of-type {
+        border-bottom: 0;
+      }
+    }
+    & .drop-account_item {
+      font-size: 8px;
+      font-weight: 100;
+      text-decoration: none;
+      color: #000;
+      display: flex;
+      width: 135px;
+      height: 40px;
+      background-color: #fff;
+      align-items: center;
+      cursor: pointer;
+
+      &:first-of-type > i {
+        margin: 0 15px 0 13px;
+      }
+      &:last-of-type > i {
+        margin: 0 10.25px 0 15px;
+      }
+    }
+  }
+  &__small {
+    font-size: 12px;
+    text-transform: none;
+    display: none;
+    align-items: center;
+    row-gap: 10px;
+
+    margin-left: 20px;
+    border-bottom: 1px rgba(0, 0, 0, 0.08) solid;
+    &.entery {
+      padding: 20px 20px 20px 0;
+      flex-direction: column;
+      & .entery-text {
+        margin-bottom: 10px;
+      }
+      & button {
+        height: 50px;
+        width: 100%;
+      }
+    }
+    &.logined {
+      line-height: 0.9;
+      padding: 20px 20px 20px 4px;
+
+      & button {
+        margin-left: auto;
+        color: #219653;
+      }
+    }
+  }
+
+  @media screen and (max-width: $bp_xl) {
+    &__desk {
+      display: none;
+    }
+    &__small {
+      display: flex;
+    }
+  }
+}

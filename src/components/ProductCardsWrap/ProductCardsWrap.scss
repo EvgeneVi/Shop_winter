@@ -1,0 +1,22 @@
+@import "../../assets/styles/variables.scss";
+.product-cards {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(230px, min-content)
+  ); // display: flex;
+  justify-content: center;
+  // flex-wrap: wrap;
+  // width: clamp(470px, 100vw, max(100%, 750px));
+
+  row-gap: 48px;
+  column-gap: clamp(10px, 2vw, 25px);
+  padding: 0 calc(20px - clamp(0px, 100vw - 1340px, 20px)) 7px
+    calc(20px - clamp(0px, 100vw - 1340px, 20px));
+  &__btn-show {
+    width: clamp(278px, 30vw, 322px);
+    height: 50px;
+    margin: clamp(40px, 6vw, 75px) auto 0 auto;
+  }
+  // margin-bottom: 7px;
+}

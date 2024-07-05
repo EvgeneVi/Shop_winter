@@ -1,0 +1,21 @@
+@import "../../../assets/styles/variables.scss";
+.modal-window {
+  //   display: flex;
+  background-color: transparent;
+  margin: 0 auto;
+  // left: -17px;
+  border: 0;
+  overflow: hidden;
+  // & > :first-child {
+  //   display: flex;
+  // }
+  &::backdrop {
+    background-color: black;
+    opacity: 0.6;
+  }
+  @media screen and (min-width: $bp_xl) {
+    & {
+      left: -17px;
+    }
+  }
+}

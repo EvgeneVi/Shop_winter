@@ -1,0 +1,124 @@
+@import "../../../assets/styles/variables.scss";
+.send-mail {
+  position: relative;
+  display: flex;
+  & > i {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    &:first-of-type {
+      width: 20px;
+      height: 16px;
+    }
+    &:last-of-type {
+      width: 22px;
+      height: 19px;
+    }
+  }
+  & input {
+    border: 0;
+    outline: none;
+    flex-grow: 1;
+  }
+  &__placeholder {
+    display: none;
+    align-content: center;
+    margin-right: auto;
+    position: absolute;
+    inset: 0 auto;
+  }
+  & > input:placeholder-shown ~ &__placeholder {
+    display: block;
+  }
+
+  &.dark {
+    background-color: #000;
+    height: 48px;
+    border: 1px rgba(255, 255, 255, 0.2) solid;
+    width: clamp(300px, 40vw, 667px);
+    padding: 0 64px;
+    & input {
+      background-color: $nav-background;
+      color: #f2f2f2;
+      font-size: 18px;
+    }
+
+    & > i:first-of-type {
+      left: 22px;
+      & path {
+        fill: #828b8d;
+      }
+    }
+    & > i:last-of-type {
+      right: 26px;
+      & path {
+        fill: white;
+      }
+    }
+  }
+
+  &.bright {
+    width: clamp(300.72px, 30vw, 401px);
+    height: 50px;
+    padding: 0 50.64px;
+    background-color: white;
+    & input {
+      background-color: transparent;
+      z-index: 2;
+      font-size: 14px;
+      &,
+      &::placeholder {
+        margin-top: 3px;
+      }
+    }
+    & > i:first-of-type {
+      left: 16px;
+    }
+    & > i:last-of-type {
+      right: 24px;
+    }
+  }
+  @media screen and (max-width: $bp_xl) {
+    $icon-wrap-w: 48px;
+    &.bright {
+      padding: 0 $icon-wrap-w 0 20px;
+      & > i:last-of-type::after,
+      &::before {
+        position: absolute;
+        content: "";
+      }
+      &::before {
+        inset: 0 0 0 auto;
+        width: $icon-wrap-w;
+        background-color: black;
+        height: 100%;
+      }
+      & > i > svg {
+        display: none;
+      }
+      & > i:last-of-type {
+        background-color: white;
+        width: 14px;
+        height: 11px;
+        border-radius: 4%;
+        inset: 0 calc($icon-wrap-w/2 - 14px / 2) 0 auto;
+        &::after {
+          width: 10.4px;
+          height: 4.1px;
+          background-color: black;
+          clip-path: polygon(50% 100%, 0 0, 100% 0);
+          inset: 1.5px 0 0 0;
+          margin: 0 auto;
+        }
+      }
+    }
+    &.bright &__placeholder {
+      font-size: 0;
+      &[data-mobiletxt]::after {
+        content: attr(data-mobiletxt);
+        font-size: 14px;
+      }
+    }
+  }
+}

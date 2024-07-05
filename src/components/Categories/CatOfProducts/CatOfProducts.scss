@@ -1,0 +1,83 @@
+@import "../../../assets/styles/variables";
+.cat-of-product {
+  position: relative;
+  width: 100%;
+  &,
+  & * {
+    font-family: $font;
+    font-size: 14px;
+  }
+  &.mobile {
+    display: none;
+    width: calc(100% - 30px);
+    margin: 0 auto;
+  }
+
+  &__title {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 21px;
+    padding-bottom: 20px;
+  }
+
+  &__show-more:not(:checked)
+    ~ &__list
+    > li:not(:nth-of-type(-n + 4), :nth-last-of-type(1)) {
+    display: none;
+  }
+
+  &__list > li:last-of-type a {
+    color: red;
+  }
+
+  @media screen and (max-width: $bp_xl) {
+    &,
+    &.mobile,
+    &__list {
+      display: flex;
+      flex-direction: column;
+    }
+    &__show-more {
+      appearance: none;
+      order: 2;
+      column-gap: 11px;
+
+      &::after {
+        content: url("../../../assets/img/navbar/array.png");
+        filter: invert(1);
+      }
+      &:not(:checked)::before {
+        content: "ПОКАЗАТЬ ЕЩЁ";
+      }
+      &:checked:after {
+        transform: rotate(180deg);
+        margin-top: 7px;
+      }
+      &:checked::before {
+        content: "СКРЫТЬ";
+      }
+    }
+
+    &__show-more,
+    &__list > li {
+      display: flex;
+      align-items: center;
+      position: relative;
+      height: 46px;
+      cursor: pointer;
+    }
+    &__list > li {
+      justify-content: space-between;
+      &:last-of-type {
+        order: -1;
+      }
+    }
+    &__list > li,
+    &__title {
+      border-bottom: 1px rgba(0, 0, 0, 0.08) solid;
+    }
+    &:not(.mobile) &__list > li {
+      padding-left: 20px;
+    }
+  }
+}

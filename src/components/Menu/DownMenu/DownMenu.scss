@@ -1,0 +1,35 @@
+@import "../../../assets/styles/variables";
+.down-menu {
+  display: flex;
+  background-color: #f9f9f9;
+  height: 60px;
+  justify-content: center;
+  &__wrap {
+    width: 1360px;
+    display: flex;
+    align-items: center;
+    & ul {
+      display: flex;
+      column-gap: 25px;
+      // & > li {
+      //   &:last-of-type a {
+      //     color: red;
+      //   }
+      // }
+    }
+  }
+
+  @media screen and (max-width: $bp_xxl) {
+    &__wrap {
+      width: auto;
+      & > ul {
+        font-size: 12px;
+      }
+    }
+  }
+  @media screen and (max-width: $bp_xl) {
+    & {
+      display: none;
+    }
+  }
+}

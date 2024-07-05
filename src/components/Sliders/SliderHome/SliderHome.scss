@@ -1,0 +1,104 @@
+@import "../../../assets/styles/variables";
+
+$Slwidth: min(100vw, 1680px);
+$Slheight: clamp(270px, calc(100vw - 848px), 482px);
+.advertising-slide {
+  width: $Slwidth;
+  height: $Slheight;
+  margin: 26px auto 0 auto;
+  overflow: hidden;
+  &__wrap {
+    position: absolute;
+    display: flex;
+    overflow: hidden;
+    height: 100%;
+  }
+  &__item {
+    text-transform: uppercase;
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 160%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    list-style: none;
+    width: calc($Slwidth * 0.82441);
+    height: inherit;
+  }
+
+  &__img {
+    position: absolute;
+    width: calc(100% - 25px);
+  }
+  &__text {
+    font-size: clamp(18px, 100vw - 1500px, 48px);
+    width: calc(12.9792em + clamp(-17px, 100vw - 1000px, 10px));
+    height: clamp(40px, 100vw - 1442px, 90px);
+    position: absolute;
+    bottom: clamp(33px, calc(100vw - 1600px), 76px);
+    left: 12.5px;
+    background-color: #000000;
+    & > span {
+      color: #ffffff;
+      margin: 0 max(0.625em, 15px);
+      line-height: 190%;
+      display: inline-block;
+      position: absolute;
+      inset: 0;
+      align-content: center;
+    }
+  }
+
+  &__checkSlide {
+    display: none;
+    position: absolute;
+    inset: auto 0 0 0;
+    justify-content: center;
+    column-gap: 10px;
+
+    & input {
+      height: 10px;
+      background-color: #ced4d7;
+      border-radius: 50%;
+      appearance: none;
+      width: 10px;
+      margin: 0 5px;
+      cursor: pointer;
+      &:checked {
+        background-color: black;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $bp-xl) {
+  .advertising-slide {
+    margin: 0;
+    &,
+    &__item {
+      width: 100vw;
+      font-weight: normal;
+      text-transform: none;
+      height: calc($Slheight + 35px);
+    }
+    &__wrap {
+      height: calc(100% - 35px);
+    }
+    &__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    &__text {
+      inset: auto 0 68px 0;
+    }
+    & > .prev,
+    & > .next {
+      display: none;
+    }
+    &__checkSlide {
+      display: flex;
+    }
+  }
+}

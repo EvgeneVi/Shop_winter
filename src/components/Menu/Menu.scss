@@ -1,0 +1,12 @@
+// @import "../../assets/styles/globals.scss";
+@import "../../assets/styles/variables.scss";
+#Menu {
+  font-family: "Grtsk Peta";
+  letter-spacing: -0.24px;
+  & > * > * {
+    @media screen and (min-width: $bp_xl) {
+      box-sizing: initial;
+      padding: 0 15px;
+    }
+  }
+}

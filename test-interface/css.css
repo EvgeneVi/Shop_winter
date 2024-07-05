@@ -1,0 +1,27 @@
+.box {
+  width: 1680px;
+  height: 642px;
+  background-color: #b0102d;
+
+  clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+  clip-path: polygon(
+    81.91% 35.17%,
+    100% 13.97%,
+    100.24% 100.63%,
+    0% 100.63%,
+    0% 15.91%,
+    18.23% 35.17%,
+    43.87% 0%
+  );
+  background-color: #000000;
+}
+
+.parent {
+  filter: url("#goo");
+  overflow: hidden;
+  /* position: fixed; */
+  /* right: -50px; */
+  z-index: 1;
+  margin: auto;
+  /* margin-top: 10vw; */
+}
