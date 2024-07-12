@@ -1,6 +1,15 @@
-import { useState } from "react";
+import { useState, FC } from "react";
+import { ProductType } from "types/types";
 import "./ProductCard.scss";
-function ProductCard({ img, title, text, price, newPrice }) {
+type OmmitedProductType = Omit<ProductType, "id">;
+
+const ProductCard: FC<OmmitedProductType> = ({
+  img,
+  title,
+  text,
+  price,
+  newPrice,
+}) => {
   let Discounted = newPrice ? <span>{`${newPrice}₽`}</span> : "";
 
   const [active, setActive] = useState(false);
@@ -26,5 +35,5 @@ function ProductCard({ img, title, text, price, newPrice }) {
       </div>
     </div>
   );
-}
+};
 export default ProductCard;

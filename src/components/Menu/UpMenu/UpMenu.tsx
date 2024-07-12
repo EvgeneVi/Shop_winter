@@ -1,5 +1,5 @@
 // import { useEffect, useState } from "react";
-import NavLocation from "../NavLocation/NavLocation.jsx";
+import NavLocation from "../NavLocation/NavLocation.js";
 import "./UpMenu.scss";
 
 function UpMenu() {

@@ -1,10 +1,13 @@
+import { FC } from "react";
+import type { UserType } from "types/types";
 import UpMenu from "./UpMenu/UpMenu";
 import MiddleMenu from "./MiddleMenu/MiddleMenu";
 import DownMenu from "./DownMenu/DownMenu";
 import "./Menu.scss";
+
 // import NavLocation from "./UpMenu/NavLocation/NavLocation";
 
-function Menu(props) {
+const Menu: FC<UserType> = (props) => {
   return (
     <nav id="Menu">
       <UpMenu />
@@ -13,5 +16,5 @@ function Menu(props) {
       {/* <NavLocation /> */}
     </nav>
   );
-}
+};
 export default Menu;

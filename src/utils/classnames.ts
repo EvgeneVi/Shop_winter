@@ -1,5 +1,6 @@
 //объеденение классов
-export default (...args) => {
+import { BoxTypes } from "types/types";
+export default (...args: (string | boolean | BoxTypes<boolean>)[]) => {
   let str = "";
   for (let i = 0; i < args.length; i++) {
     let arg = args[i];

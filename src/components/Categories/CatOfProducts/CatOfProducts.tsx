@@ -1,6 +1,16 @@
+import { FC } from "react";
 import "./CatOfProducts.scss";
-export default function CatOfProducts({ children, title, mobile, showMore }) {
-  const list = {
+type catType = {
+  children?: React.ReactNode;
+  title?: string;
+  mobile?: boolean;
+  showMore?: boolean;
+};
+type prodDataType = { a: string };
+type prodListType = { [key: string]: prodDataType };
+
+const CatOfProducts: FC<catType> = ({ children, title, mobile, showMore }) => {
+  const list: prodListType = {
     Новинки: { a: "#" },
     Сноуборд: { a: "#" },
     Лыжи: { a: "#" },
@@ -38,4 +48,6 @@ export default function CatOfProducts({ children, title, mobile, showMore }) {
       </ul>
     </div>
   );
-}
+};
+
+export default CatOfProducts;

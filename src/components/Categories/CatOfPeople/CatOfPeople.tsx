@@ -1,6 +1,10 @@
 // import { NavLink } from "react-router-dom";
+import { FC } from "react";
+import { ChildrenType } from "types/types";
 import "./CatOfPeople.scss";
-export default function CatOfPeople({ children }) {
+
+const CatOfPeople: FC<ChildrenType> = ({ children }) => {
+  console.log(children);
   const leftPart = [
     { text: "Мужчинам", active: true },
     { text: "Женщинам", active: false },
@@ -18,4 +22,5 @@ export default function CatOfPeople({ children }) {
       {children}
     </>
   );
-}
+};
+export default CatOfPeople;

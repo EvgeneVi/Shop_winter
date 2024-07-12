@@ -1,5 +1,21 @@
+import { BoxTypes } from "types/types";
+
+type timerType = {
+  dur: number;
+  unit: "sec" | "min" | "hour" | "day";
+  func: (e: string | boolean) => void;
+};
+
 class Timer {
-  constructor({ dur, unit, func }) {
+  func: timerType["func"];
+  dur: timerType["dur"];
+  unit: timerType["unit"];
+  startTime: null | number;
+  current: null | number;
+  interval: null;
+  time: null;
+
+  constructor({ dur, unit, func }: timerType) {
     this.func = func;
     this.dur = dur * this._durTimes[unit];
     this.unit = unit;

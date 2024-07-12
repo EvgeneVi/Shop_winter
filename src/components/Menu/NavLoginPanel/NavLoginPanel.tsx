@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { FormContainerReg } from "../../shared/Forms";
-import ModalWindow from "../../shared/ModalWindow/ModalWindow";
+import { FormContainerReg } from "components/shared/Forms";
+import ModalWindow from "components/shared/ModalWindow/ModalWindow";
+import Button from "components/shared/Button/Button";
 import "./NavLoginPanel.scss";
-import Button from "../../shared/Button/Button";
 
 export default function NavLoginPanel({ user }) {
   const [state, setState] = useState({

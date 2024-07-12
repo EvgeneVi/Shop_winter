@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Timer from "../../../../utils/timer";
+import Timer from "utils/timer";
 import FormAuth from "../FormAuth/FormAuth";
 import "./FormContainerReg.scss";
 
@@ -25,7 +25,7 @@ export default function FormContainerReg({ openWindowlhandler, ...props }) {
     const timerObj = new Timer({
       dur: 2,
       unit: "sec",
-      func: (time) => {
+      func: (time: string | boolean) => {
         if (time === false) {
           setStateData("timer", { start: false, timerObj: null });
           return;

@@ -1,7 +1,17 @@
-// import React from 'react'
-import classnames from "../../../utils/classnames";
+import { ReactNode, MouseEvent } from "react";
+import classnames from "utils/classnames";
 import "./Button.scss";
-export default function Button({
+
+type ButtonType = {
+  classes: string;
+  children?: ReactNode | string;
+  onClick?: (e: MouseEvent) => void;
+  active?: boolean;
+  disable?: boolean;
+  [key: string]: any;
+};
+
+const Button = ({
   //   type,
   classes,
   children,
@@ -9,15 +19,15 @@ export default function Button({
   active,
   disable = false,
   ...attrs
-}) {
+}: ButtonType) => {
   const classList = classnames("btn-custom", classes, { disable });
 
-  const onClickCustom = (e) => {
+  const onClickCustom = (e: MouseEvent): any => {
     if (disable) e.preventDefault();
     else if (onClick) return onClick(e);
   };
 
-  let Tag = "div";
+  let Tag: any = "div";
 
   switch (true) {
     case attrs.href !== undefined:
@@ -33,4 +43,5 @@ export default function Button({
       {children}
     </Tag>
   );
-}
+};
+export default Button;

@@ -1,12 +1,15 @@
+import { FC, MouseEvent } from "react";
 import "./MiddleMenu.scss";
-import logo from "../../../assets/img/logo/logo.png";
+import logo from "assets/img/logo/logo.png";
 import SearchBtn from "../SearchBtn/SearchBtn";
-import CatOfPeople from "../../Categories/CatOfPeople/CatOfPeople";
-import CatOfProducts from "../../Categories/CatOfProducts/CatOfProducts";
+import CatOfPeople from "components/Categories/CatOfPeople/CatOfPeople";
+import CatOfProducts from "components/Categories/CatOfProducts/CatOfProducts";
 import NavLoginPanel from "../NavLoginPanel/NavLoginPanel";
-import NavLocation from "../NavLocation/NavLocation.jsx";
+import NavLocation from "../NavLocation/NavLocation";
+import type { UserType } from "types/types";
 
-function MiddleMenu({ user }) {
+const MiddleMenu: FC<UserType> = ({ user }) => {
+  // console.log(typeof user);
   const NavLP = <NavLoginPanel user={user} />;
   // console.log(NavLP);
   return (
@@ -15,7 +18,9 @@ function MiddleMenu({ user }) {
       <div className="middle-menu__wrap">
         <button
           className="middle-menu__burger-btn"
-          onClick={(e) => e.target.classList.toggle("active")}
+          onClick={({ target }: MouseEvent) =>
+            (target as Element).classList.toggle("active")
+          }
         ></button>
         <div className="middle-menu__left-list">
           <CatOfPeople>
@@ -56,5 +61,5 @@ function MiddleMenu({ user }) {
       </div>
     </div>
   );
-}
+};
 export default MiddleMenu;

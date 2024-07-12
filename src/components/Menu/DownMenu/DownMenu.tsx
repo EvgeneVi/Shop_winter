@@ -1,4 +1,4 @@
-import CatOfProducts from "../../Categories/CatOfProducts/CatOfProducts";
+import CatOfProducts from "components/Categories/CatOfProducts/CatOfProducts";
 import "./DownMenu.scss";
 
 function DownMenu() {

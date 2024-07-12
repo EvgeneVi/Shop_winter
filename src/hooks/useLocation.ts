@@ -1,15 +1,15 @@
 import { useContext } from "react";
-import { MainContext } from "../context";
+import { MainContext, Store } from "../context/context";
 
 export default function useLocation() {
   const {
     state: { city },
     setState,
-  } = useContext(MainContext);
+  } = useContext<any>(MainContext);
 
   const location = city;
-  const setLocation = (val) => {
-    setState((prev) => ({ ...prev, city: val }));
+  const setLocation = (val: string) => {
+    setState((prev: Store) => ({ ...prev, city: val }));
   };
   return {
     location,

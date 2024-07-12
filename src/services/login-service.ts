@@ -1,5 +1,7 @@
+import type { UserType } from "types/types";
+
 export default class {
-  setUser = (data) => {
+  setUser = (data: UserType) => {
     localStorage.setItem("user", JSON.stringify(data));
   };
   getUser = () => {

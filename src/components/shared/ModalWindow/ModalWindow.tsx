@@ -1,12 +1,19 @@
 // import React from "react";
 import { createPortal } from "react-dom";
 import "./ModalWindow.scss";
-import { useEffect, useRef } from "react";
+import { FC, useEffect, useRef } from "react";
 
-export default function ModalWindow({ children, openModal }) {
-  const modalRef = useRef(null);
+type modalType = {
+  children: React.ReactNode;
+  openModal: boolean;
+};
+
+const ModalWindow: FC<modalType> = ({ children, openModal }) => {
+  const modalRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
+    if (!modalRef.current) return;
+
     if (openModal) modalRef.current.showModal();
     else modalRef.current.close();
   }, [openModal]);
@@ -17,4 +24,5 @@ export default function ModalWindow({ children, openModal }) {
     </dialog>,
     document.body
   );
-}
+};
+export default ModalWindow;
