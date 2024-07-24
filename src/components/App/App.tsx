@@ -25,7 +25,9 @@ function App() {
       <header>
         <Menu {...dataUser} />
       </header>
-      <main>{/* <Home /> */}</main>
+      <main>
+        <Home />
+      </main>
       <Footer />
     </>
   );

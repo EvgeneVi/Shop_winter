@@ -1,20 +1,38 @@
 import { useEffect, useRef, useState } from "react";
-
+import { BoxTypes } from "types/types";
 import "./CustomSlider.scss";
-import PropTypes from "prop-types";
 import ButtonsShift from "./ButtonsShift/ButtonsShift";
 import ButtonsCheckSlides from "./ButtonsCheckSlides/ButtonsCheckSlides";
+
+type CustomSltypes = {
+  children: React.ReactNode;
+  classes: string;
+  classesBtn?: string;
+  infinity?: boolean;
+  durucation?: number;
+  buttonsCheckSlides?: boolean;
+};
+
+type StateParmsTypes = {
+  dur: number;
+  max: number;
+  counter: number;
+  slider_w: number;
+  item_w: number; ////!
+  items: React.ReactNode;
+  end: number;
+};
 
 function CustomSlider({
   children,
   classes,
   classesBtn,
-  infinity,
-  durucation,
-  buttonsCheckSlides,
-}) {
+  infinity = false,
+  durucation = 0.5,
+  buttonsCheckSlides = false,
+}: CustomSltypes) {
   const ref = useRef(null);
-  const [state, setState] = useState({
+  const [state, setState] = useState<StateParmsTypes>({
     dur: 0,
     max: 0,
     counter: 0,
@@ -23,25 +41,37 @@ function CustomSlider({
     items: children,
     end: 1,
   });
+
+  const a = state.slider_w;
   const { slider_w, item_w, counter, items, max, end, dur } = state;
 
-  const float = (val) => parseFloat(val?.toFixed(4));
+  const float = (val: number) => parseFloat(val?.toFixed(4));
 
-  const onresizeWidth = ({ borderBoxSize, target: { firstChild } }) => {
+  const onresizeWidth = ({
+    borderBoxSize,
+    target: { firstChild: fChild },
+  }: {
+    borderBoxSize: any[];
+    target: { firstChild: HTMLElement };
+  }) => {
     const slider_w = borderBoxSize[0].inlineSize,
-      item_w =
-        firstChild.getBoundingClientRect().width / firstChild.childElementCount;
+      item_w = fChild.getBoundingClientRect().width / fChild.childElementCount;
 
     let { counter, max, items, end } = state;
 
     const sum_vw = Math.floor(slider_w / item_w);
+    const childsList = children as React.ReactNode[];
 
-    if (sum_vw > 0 && sum_vw < children.length) {
-      const sum_slides = children.length / (sum_vw || children.length);
+    if (sum_vw > 0 && sum_vw < childsList.length) {
+      const sum_slides = childsList.length / (sum_vw || childsList.length);
 
       if (infinity) {
-        const i = sum_vw < children.length ? sum_vw + 1 : 0;
-        items = [...children.slice(-i), ...children, ...children.slice(0, i)];
+        const i = sum_vw < childsList.length ? sum_vw + 1 : 0;
+        items = [
+          ...childsList.slice(-i),
+          ...childsList,
+          ...childsList.slice(0, i),
+        ];
         end = float(sum_slides - Math.floor(sum_slides)) || end;
         max = float(Math.ceil(sum_slides) + end);
 
@@ -72,43 +102,48 @@ function CustomSlider({
   };
   const edge = { 1: infinity ? 1 : 0, [max]: infinity ? float(max - 1) : max };
 
-  const setOffset = (direction, ex) => () => {
-    let { counter, max, end } = state;
-    let dur = durucation;
-    let step = 1;
+  const setOffset =
+    (direction: string | null, ex: number = -1) =>
+    () => {
+      let { counter, max, end } = state;
+      let dur = durucation;
+      let step = 1;
 
-    const setValStep = (count) => {
-      return /*infinity &&*/ float(count) === edge[max] ? end : 1;
+      const setValStep = (count: number) => {
+        return /*infinity &&*/ float(count) === edge[max] ? end : 1;
+      };
+      if (ex > -1) {
+        setState((prev) => {
+          return {
+            ...prev,
+            counter: Math.min(ex, edge[max]),
+            dur,
+          };
+        });
+        return;
+      }
+
+      switch (direction) {
+        case "next":
+          step = setValStep(counter + end);
+          counter =
+            counter < edge[max] ? Math.min(float(counter + step), max) : 0;
+          break;
+        case "prev":
+          step = setValStep(counter);
+          counter =
+            counter > edge[1] ? Math.max(float(counter - step), 0) : max;
+          break;
+      }
+      dur = infinity && (counter === max || counter === 0) ? 0 : durucation;
+      setState((prev) => ({ ...prev, counter, dur }));
     };
-    if (ex > -1) {
-      setState((prev) => {
-        return {
-          ...prev,
-          counter: Math.min(ex, edge[max]),
-          dur,
-        };
-      });
-      return;
-    }
-
-    switch (direction) {
-      case "next":
-        step = setValStep(counter + end);
-        counter =
-          counter < edge[max] ? Math.min(float(counter + step), max) : 0;
-        break;
-      case "prev":
-        step = setValStep(counter);
-        counter = counter > edge[1] ? Math.max(float(counter - step), 0) : max;
-        break;
-    }
-    dur = infinity && (counter === max || counter === 0) ? 0 : durucation;
-    setState((prev) => ({ ...prev, counter, dur }));
-  };
 
   useEffect(() => {
     if (!ref?.current) return;
-    const obs = new ResizeObserver((entries) => onresizeWidth(entries[0]));
+    const obs = new ResizeObserver((entries: any[]) =>
+      onresizeWidth(entries[0])
+    );
     obs.observe(ref.current);
 
     return () => {
@@ -144,7 +179,12 @@ function CustomSlider({
           /// если отступ отрицательный то он равен 0 PX!
         }}
       >
-        {items.map((item, i) => ({ ...item, key: i }))}
+        {(items as JSX.Element[])?.map(
+          (item, i): JSX.Element => ({
+            ...item,
+            key: `${i}`,
+          })
+        )}
       </div>
       {/* {console.log(max)} */}
       {/* (infinity ? 2 : 0) */}
@@ -169,21 +209,5 @@ function CustomSlider({
     </section>
   );
 }
-
-CustomSlider.propTypes = {
-  children: PropTypes.node.isRequired,
-  classes: PropTypes.string,
-  infinity: PropTypes.bool,
-  durucation: PropTypes.number,
-  buttonsCheckSlides: PropTypes.bool,
-  classesBtn: PropTypes.string,
-};
-
-CustomSlider.defaultProps = {
-  buttonsCheckSlides: false,
-  infinity: false,
-  durucation: 0.5,
-  // slides: items,
-};
 
 export default CustomSlider;

@@ -1,4 +1,4 @@
-import Img from "../../../assets/img";
+import Img from "assets/img/";
 import CustomSlider from "../CustomSlider/CustomSlider";
 import "./SliderHome.scss";
 

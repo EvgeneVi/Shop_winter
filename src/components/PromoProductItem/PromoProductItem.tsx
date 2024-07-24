@@ -1,8 +1,13 @@
 import "./PromoProductItem.scss";
 
-export default function PromoProductItem({
-  item: { imgLogo, img, title, text },
-}) {
+const PromoProductItem = ({
+  imgLogo,
+  img,
+  title,
+  text,
+}: {
+  [i: string]: string;
+}) => {
   return (
     <div className="promo-product-item">
       <i
@@ -17,4 +22,5 @@ export default function PromoProductItem({
       <p className="promo-product-item_text">{text}</p>
     </div>
   );
-}
+};
+export default PromoProductItem;

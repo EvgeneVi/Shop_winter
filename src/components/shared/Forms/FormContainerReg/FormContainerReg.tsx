@@ -1,75 +1,92 @@
-import { useState, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
+import { FormUserContainerType } from "types/types";
 import Timer from "utils/timer";
 import FormAuth from "../FormAuth/FormAuth";
 import "./FormContainerReg.scss";
 
-export default function FormContainerReg({ openWindowlhandler, ...props }) {
-  const [state, setState] = useState({
+type FormUserType = {
+  restorePass: boolean;
+  timer: {
+    timerObj: null | Timer;
+    time: {
+      sec: string;
+      msec: string;
+    };
+  };
+};
+interface FormContType extends FormUserContainerType {
+  openWindowlhandler: (e?: boolean) => (e: React.MouseEvent) => void;
+}
+const FormContainerReg: FC<FormContType> = ({
+  openWindowlhandler,
+  setTypeForm,
+  typeFormReg,
+}) => {
+  const [state, setState] = useState<FormUserType>({
     restorePass: false,
-    timer: { timerObj: null, start: false, time: { sec: "00", msec: "00" } },
+    timer: { timerObj: null, time: { sec: "00", msec: "00" } },
   });
 
-  const setStateData = (name, data) => {
+  const setStateData = (name: keyof FormUserType, data: any) => {
     setState((prev) => {
-      const val = typeof data === "object" ? { ...prev[name], ...data } : data;
+      const val =
+        typeof data === "object"
+          ? { ...(prev[name] as object), ...data }
+          : data;
       return {
         ...prev,
         [name]: val,
       };
     });
   };
-  const stopTimer = () => {
-    setStateData("timer", { start: false });
-  };
+
   const startTimer = () => {
     const timerObj = new Timer({
-      dur: 2,
+      dur: 5,
       unit: "sec",
-      func: (time: string | boolean) => {
-        if (time === false) {
-          setStateData("timer", { start: false, timerObj: null });
+      func: (time) => {
+        if (time === null) {
+          setStateData("timer", { timerObj: null });
           return;
         }
         setStateData("timer", { time });
       },
     });
-    setStateData("timer", { start: true, timerObj });
+    setStateData("timer", { timerObj });
   };
 
-  const openWindowlCustomAction = (e) => {
-    stopTimer();
-    setStateData("restorePass", false);
+  const openWindowlCustomAction = (e: React.MouseEvent) => {
+    state.timer.timerObj?.stopTimer();
     openWindowlhandler()(e);
   };
+
   const forgotPassAction = () => {
     setStateData("restorePass", true);
     startTimer();
   };
 
-  const startTimerAction = (e) => {
+  const startTimerAction = (e: React.MouseEvent) => {
     e.preventDefault();
-    return startTimer();
+    startTimer();
   };
 
   useEffect(() => {
-    // console.log(state);
-    const { start, timerObj } = state.timer;
-    if (timerObj && start === true) {
+    const { timerObj } = state.timer;
+    if (timerObj instanceof Timer) {
       timerObj.startTimer();
-    } else if (timerObj && start === false) {
-      timerObj.stopTimer();
     }
-  }, [state.timer.start]);
+  }, [state.timer.timerObj]);
 
   return (
     <FormAuth
       forgotPassAction={forgotPassAction}
       restorePass={state.restorePass}
-      openWindowlhandler={openWindowlCustomAction}
-      timer={state.timer}
+      closeWindow={openWindowlCustomAction}
+      time={{ ...state.timer.time }}
       startTimer={startTimerAction}
-      setTypeForm={props.setTypeForm}
-      typeFormReg={props.typeFormReg}
+      setTypeForm={setTypeForm}
+      typeFormReg={typeFormReg}
     />
   );
-}
+};
+export default FormContainerReg;

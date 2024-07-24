@@ -1,5 +1,8 @@
-export default function ButtonsShift({ classes, setOffset }) {
-  // console.log(setOffset);
+type BtnType = {
+  setOffset: (direction: string, ex?: number) => () => void;
+  classes: string;
+};
+export default function ButtonsShift({ classes, setOffset }: BtnType) {
   return (
     <>
       <button

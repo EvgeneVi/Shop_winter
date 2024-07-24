@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { FC, useState } from "react";
+import { UserType } from "types/types";
 import { FormContainerReg } from "components/shared/Forms";
 import ModalWindow from "components/shared/ModalWindow/ModalWindow";
 import Button from "components/shared/Button/Button";
 import "./NavLoginPanel.scss";
 
-export default function NavLoginPanel({ user }) {
+const NavLoginPanel: FC<UserType> = ({ user }) => {
   const [state, setState] = useState({
     openWindow: false,
     typeFormReg: false,
@@ -15,7 +16,7 @@ export default function NavLoginPanel({ user }) {
 
   const openWindowlhandler =
     (type = false) =>
-    (e) => {
+    (e: React.MouseEvent) => {
       e.preventDefault();
       setState((prev) => ({ typeFormReg: type, openWindow: !prev.openWindow }));
     };
@@ -36,7 +37,9 @@ export default function NavLoginPanel({ user }) {
           <a
             className="nav-login-panel__desk"
             href="###"
-            onClick={(e) => e.target.closest("a").classList.toggle("active")}
+            onClick={(e: React.MouseEvent) =>
+              (e.target as HTMLElement).closest("a")?.classList.toggle("active")
+            }
           >
             <i className="icon-entry"></i>
             Аккаунт
@@ -96,4 +99,5 @@ export default function NavLoginPanel({ user }) {
       )}
     </div>
   );
-}
+};
+export default NavLoginPanel;

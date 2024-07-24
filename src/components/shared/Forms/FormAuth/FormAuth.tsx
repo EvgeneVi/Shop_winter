@@ -1,19 +1,35 @@
+import { FC } from "react";
 import "./FormAuth.scss";
-import CloseBtn from "../../ModalWindowComponents/CloseBtn/CloseBtn";
-import Button from "../../Button/Button";
-import Input from "../../Input/Input";
-export default function FormAuth(props) {
+import { FormUserContainerType } from "types/types";
+import CloseBtn from "components/shared/ModalWindowComponents/CloseBtn/CloseBtn";
+import Button from "components/shared/Button/Button";
+import Input from "components/shared/Input/Input";
+
+interface FormAuthType extends FormUserContainerType {
+  closeWindow: (e: React.MouseEvent) => void;
+  restorePass: boolean;
+  forgotPassAction: () => void;
+  time: {
+    // start: boolean;
+
+    sec: string;
+    msec: string;
+  };
+  startTimer: (e: React.MouseEvent) => void;
+}
+const FormAuth: FC<FormAuthType> = (props) => {
   const {
-    restorePass,
-    forgotPassAction,
-    openWindowlhandler,
-    timer,
-    startTimer,
+    closeWindow,
     setTypeForm,
     typeFormReg,
+
+    restorePass,
+    forgotPassAction,
+    time,
+    startTimer,
   } = props;
 
-  const { start, time } = timer;
+  const { sec, msec } = time;
 
   return (
     <div
@@ -25,19 +41,19 @@ export default function FormAuth(props) {
         <Button
           type={"button"}
           classes={"auth"}
-          onClick={typeFormReg && setTypeForm}
+          onClick={typeFormReg ? setTypeForm : null}
         >
           Вход
         </Button>
         <Button
           type={"button"}
           classes={"regist"}
-          onClick={!typeFormReg && setTypeForm}
+          onClick={!typeFormReg ? setTypeForm : null}
         >
           Регистрация
         </Button>
       </div>
-      <CloseBtn openWindowlhandler={openWindowlhandler} />
+      <CloseBtn closeWindow={closeWindow} />
       <div className="wrap-forms">
         {!restorePass ? (
           <>
@@ -102,13 +118,13 @@ export default function FormAuth(props) {
                 type={"submit"}
                 classes={"black"}
                 onClick={startTimer}
-                disable={start}
+                disable={!(sec === "00" && msec === "00")}
               >
                 Отправить пароль повторно
               </Button>
               <div className="form-login__timer">
                 <span>
-                  00:{time.sec}:{time.msec}
+                  00:{sec}:{msec}
                 </span>
               </div>
             </form>
@@ -117,4 +133,5 @@ export default function FormAuth(props) {
       </div>
     </div>
   );
-}
+};
+export default FormAuth;

@@ -1,6 +1,7 @@
 import "./Footer.scss";
-import Img from "../../assets/img";
-import SendMail from "../shared/SendMail/SendMail";
+import Img from "assets/img";
+import SendMail from "components/shared/SendMail/SendMail";
+
 // import SendMailInputDark from "../shared/SendMailInputDark/SendMailInputDark";
 
 export default function Footer() {
@@ -85,7 +86,7 @@ export default function Footer() {
           <span className="contact-nav-links__text">
             Подпишись на рассылку и получи <span>-10%</span> скидку
           </span>
-          <SendMail theme={"dark"} />
+          <SendMail classes={"dark"} />
           <nav>
             <ul>
               <li>

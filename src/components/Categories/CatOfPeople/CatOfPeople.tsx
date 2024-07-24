@@ -4,7 +4,6 @@ import { ChildrenType } from "types/types";
 import "./CatOfPeople.scss";
 
 const CatOfPeople: FC<ChildrenType> = ({ children }) => {
-  console.log(children);
   const leftPart = [
     { text: "Мужчинам", active: true },
     { text: "Женщинам", active: false },

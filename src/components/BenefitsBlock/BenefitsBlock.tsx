@@ -1,7 +1,7 @@
 import "./BenefitsBlock.scss";
-import Img from "../../assets/img";
-import SendMail from "../shared/SendMail/SendMail";
+import Img from "assets/img";
 import Button from "../shared/Button/Button";
+import SendMail from "components/shared/SendMail/SendMail";
 
 export default function BenefitsBlock() {
   const { logo2 } = Img.img_logo,
@@ -39,7 +39,7 @@ export default function BenefitsBlock() {
           Скидка -10% <span className="title-for-mobile">Скидка -15%</span>
         </h1>
         <p>За подписку на наши новости</p>
-        <SendMail theme="bright" />
+        <SendMail classes="bright" text="Email" />
       </div>
     </section>
   );

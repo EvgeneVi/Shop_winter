@@ -1,28 +1,23 @@
-import { ReactNode, MouseEvent } from "react";
+import { MouseEvent } from "react";
+import { CustomElement } from "types/types";
 import classnames from "utils/classnames";
 import "./Button.scss";
 
-type ButtonType = {
-  classes: string;
-  children?: ReactNode | string;
-  onClick?: (e: MouseEvent) => void;
-  active?: boolean;
-  disable?: boolean;
-  [key: string]: any;
-};
-
+const enum typeEL {
+  button,
+  submit,
+}
 const Button = ({
-  //   type,
-  classes,
+  classes = "",
   children,
-  onClick,
+  onClick = null,
   active,
   disable = false,
   ...attrs
-}: ButtonType) => {
+}: CustomElement<keyof typeof typeEL>) => {
   const classList = classnames("btn-custom", classes, { disable });
 
-  const onClickCustom = (e: MouseEvent): any => {
+  const onClickCustom = (e: MouseEvent): typeof onClick | void => {
     if (disable) e.preventDefault();
     else if (onClick) return onClick(e);
   };

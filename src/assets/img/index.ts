@@ -1,7 +1,10 @@
+import { BoxTypes } from "types/types";
 export default class Img {
-  static url = (path, img) => new URL(`${path}${img}`, import.meta.url).href;
-  static getAllfrom = (path, arr) => {
-    let obj = {};
+  static url = (path: string, img: string) =>
+    new URL(`${path}${img}`, import.meta.url).href;
+  static getAllfrom = (path: string, arr: string[]) => {
+    let obj: BoxTypes<string> = {};
+
     arr.forEach((img) => {
       let key = img.replace("-", "_").match(/.+(?=\.)/g)?.[0];
       if (!key) return;

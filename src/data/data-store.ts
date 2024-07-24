@@ -65,6 +65,18 @@ export default class Data {
       price: 34392,
     },
   ];
+  getDiscountProducts = () => [
+    {
+      img: `${this._pathToImg}/discounts/discount1.png`,
+      title: "Название Акции №1",
+      href: "#",
+    },
+    {
+      img: `${this._pathToImg}/discounts/discount2.png`,
+      title: "Название Акции №2",
+      href: "#",
+    },
+  ];
   getPromoProduct = () => ({
     imgLogo: `${this._pathToImg}/brands/logo-promo.png`,
     img: `${this._pathToImg}/discounts/discount3.png`,

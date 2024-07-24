@@ -1,11 +1,21 @@
+type ButtonsCheckSlType = {
+  classes: string;
+  first: number;
+  sum_sl: number;
+  current: number;
+  setOffset: (direction: string | null, ex?: number) => () => void;
+};
 export default function ButtonsCheckSlides({
   classes,
   first,
   sum_sl,
   current,
   setOffset,
-}) {
+}: ButtonsCheckSlType) {
   // console.log(sum_sl);
+  // const halderChange = (key: number) => (target) => {
+  //   target.checked = key === current;
+  // };
   return (
     <div className={`${classes}__checkSlide`}>
       <form>
@@ -19,11 +29,9 @@ export default function ButtonsCheckSlides({
                 type="radio"
                 name="slide"
                 value={key}
-                checked={key === current && true}
-                onChange={(target) => {
-                  target.checked = key === current && true;
-                }}
-                onClick={key != current ? setOffset(null, key) : null}
+                defaultChecked={key === current}
+                // onChange={undefined}
+                onClick={key != current ? setOffset(null, key) : undefined}
               ></input>
             );
           })}

@@ -1,4 +1,4 @@
-import Data from "../../../data/data-store";
+import Data from "data/data-store";
 import CustomSlider from "../CustomSlider/CustomSlider";
 import "./SliderBlog.scss";
 
