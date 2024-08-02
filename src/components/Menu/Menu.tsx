@@ -1,4 +1,3 @@
-import { FC } from "react";
 import type { UserType } from "types/types";
 import UpMenu from "./UpMenu/UpMenu";
 import MiddleMenu from "./MiddleMenu/MiddleMenu";
@@ -7,7 +6,7 @@ import "./Menu.scss";
 
 // import NavLocation from "./UpMenu/NavLocation/NavLocation";
 
-const Menu: FC<UserType> = (props) => {
+const Menu = (props: UserType) => {
   return (
     <nav id="Menu">
       <UpMenu />

@@ -6,7 +6,7 @@ export default function useLocation() {
     state: { city },
     setState,
   } = useContext<any>(MainContext);
-
+  console.log(useContext<any>(MainContext));
   const location = city;
   const setLocation = (val: string) => {
     setState((prev: Store) => ({ ...prev, city: val }));

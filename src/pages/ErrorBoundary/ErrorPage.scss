@@ -1,0 +1,32 @@
+.error-page {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ced4d7;
+  font-size: 90px;
+  gap: clamp(30px, 2vw, 2vw);
+  &_status {
+    color: #828b8d;
+  }
+  &_message {
+    font-size: 0.178em;
+    text-align: center;
+    color: #757c84;
+  }
+  &_link {
+    font-size: 0.178em;
+    height: 3.122em;
+    width: 15em;
+    color: white;
+    background-color: #eb5757;
+    &:hover {
+      color: #ced4d7;
+      transition: 0.2s;
+    }
+
+    // width: ;
+  }
+}

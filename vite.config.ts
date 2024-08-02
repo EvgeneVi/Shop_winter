@@ -11,6 +11,7 @@ const url = (path: string): string => resolve(root, path);
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  root: "./",
   plugins: [react(), glsl()],
   resolve: {
     alias: {
@@ -20,12 +21,13 @@ export default defineConfig({
       data: url("data"),
       hooks: url("hooks"),
       pages: url("pages"),
+      routers: url("routers"),
       services: url("services"),
       types: url("types"),
       utils: url("utils"),
     },
   },
   server: {
-    open: "/public/index.html",
+    open: "http://localhost:5173",
   },
 });

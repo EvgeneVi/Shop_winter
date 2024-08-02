@@ -1,4 +1,4 @@
-@import "../../../assets/styles/variables";
+@import "assets/styles/variables";
 @keyframes appear {
   from {
     opacity: 0;
@@ -31,7 +31,7 @@ $navVh: clamp(60px, 13vw, 94px);
       column-gap: 25px;
       & > li {
         position: relative;
-        &:hover {
+        &:is(/*:hover,*/ .active) {
           &:after {
             position: absolute;
             bottom: -10px;

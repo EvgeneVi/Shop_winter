@@ -23,11 +23,12 @@
       "data/*": ["data/*"],
       "hooks/*": ["hooks/*"],
       "pages/*": ["pages/*"],
+      "routers/*": ["routers/*"],
       "services/*": ["services/*"],
       "types/*": ["types/*"],
       "utils/*": ["utils/*"]
     }
   },
-  "include": ["src"],
+  // "include": ["src", "public/index.jsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

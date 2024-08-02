@@ -9,20 +9,16 @@ type Store = {
   city: string;
 };
 
-// type ChildrenType = {
-//   children: React.ReactNode;
-// };
 const stateCity = {
   city: "Санкт-Петербург",
 };
-// const store = { ...stateCity };
 
 export const MainContext = createContext<ProviderTypes | Store>({
   ...stateCity,
   // ...store,
 });
 
-export const MainProvider: FC<ChildrenType> = ({ children }) => {
+export const MainProvider = ({ children }: ChildrenType) => {
   const [state, setState] = useState<Store>({ ...stateCity });
 
   return (

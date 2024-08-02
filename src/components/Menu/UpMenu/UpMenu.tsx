@@ -3,20 +3,9 @@ import NavLocation from "../NavLocation/NavLocation.js";
 import "./UpMenu.scss";
 
 function UpMenu() {
-  // const [media, setMedia] = useState(matchMedia("(min-width: 1200px)"));
-  // const changeSizeWindow = (e) => setMedia(e.matches);
-  // useEffect(() => {
-  //   if (media?.media) {
-  //     media.onchange = changeSizeWindow;
-  //     setMedia(media.matches);
-  //   }
-  //   console.log("use", media);
-  // }, []);
-
   return (
     <div className="up-menu">
       <div className="up-menu__wrap">
-        {/* {media === true && <NavLocation />} */}
         <NavLocation />
         <ul className="up-menu__right">
           <li>

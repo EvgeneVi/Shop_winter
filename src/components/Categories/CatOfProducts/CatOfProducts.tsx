@@ -1,5 +1,7 @@
-import { FC } from "react";
+import { NavLink } from "react-router-dom";
+
 import "./CatOfProducts.scss";
+import { CATALOGUE_ROUTE } from "utils/constants";
 type catType = {
   children?: React.ReactNode;
   title?: string;
@@ -9,7 +11,7 @@ type catType = {
 type prodDataType = { a: string };
 type prodListType = { [key: string]: prodDataType };
 
-const CatOfProducts: FC<catType> = ({ children, title, mobile, showMore }) => {
+const CatOfProducts = ({ children, title, mobile, showMore }: catType) => {
   const list: prodListType = {
     Новинки: { a: "#" },
     Сноуборд: { a: "#" },
@@ -41,7 +43,7 @@ const CatOfProducts: FC<catType> = ({ children, title, mobile, showMore }) => {
       <ul className={`cat-of-product__list`}>
         {Object.keys(list).map((item, i) => (
           <li key={i}>
-            <a href={list[item].a}>{item}</a>
+            <NavLink to={`${CATALOGUE_ROUTE}${list[item].a}`}>{item}</NavLink>
             {children}
           </li>
         ))}

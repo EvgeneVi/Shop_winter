@@ -2,6 +2,8 @@
 import { FC } from "react";
 import { ChildrenType } from "types/types";
 import "./CatOfPeople.scss";
+import { NavLink } from "react-router-dom";
+import { SHOP_ROUTE } from "utils/constants";
 
 const CatOfPeople: FC<ChildrenType> = ({ children }) => {
   const leftPart = [
@@ -14,7 +16,8 @@ const CatOfPeople: FC<ChildrenType> = ({ children }) => {
       <ul className="cat-of-people">
         {leftPart.map(({ text, active }, i) => (
           <li key={i} className={active ? "active" : ""}>
-            <a href="###">{text}</a>
+            <NavLink to={`${SHOP_ROUTE}/${text}`}>{text}</NavLink>
+            {/* <a href="###">{text}</a> */}
           </li>
         ))}
       </ul>

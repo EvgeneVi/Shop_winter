@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+
+import { Outlet } from "react-router-dom";
 import { UserType } from "types/types";
-import Home from "pages/Home/Home";
+// import Home from "pages/Home/Home";
 import Footer from "components/Footer/Footer";
 import loginService from "services/login-service";
 import Menu from "components/Menu/Menu";
@@ -9,6 +11,7 @@ import "assets/styles/_icons.scss";
 import "./App.scss";
 
 function App() {
+  // console.log(props);
   // const [count, setCount] = useState(0)
   const [dataUser, setDataUser] = useState<UserType>({ user: false });
 
@@ -26,7 +29,8 @@ function App() {
         <Menu {...dataUser} />
       </header>
       <main>
-        <Home />
+        <Outlet />
+        {/* <Home /> */}
       </main>
       <Footer />
     </>

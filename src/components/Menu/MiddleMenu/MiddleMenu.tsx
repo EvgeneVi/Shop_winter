@@ -1,4 +1,5 @@
-import { FC, MouseEvent } from "react";
+import { MouseEvent } from "react";
+import { Link } from "react-router-dom";
 import "./MiddleMenu.scss";
 import logo from "assets/img/logo/logo.png";
 import SearchBtn from "../SearchBtn/SearchBtn";
@@ -7,11 +8,10 @@ import CatOfProducts from "components/Categories/CatOfProducts/CatOfProducts";
 import NavLoginPanel from "../NavLoginPanel/NavLoginPanel";
 import NavLocation from "../NavLocation/NavLocation";
 import type { UserType } from "types/types";
+import { SHOP_ROUTE } from "utils/constants";
 
-const MiddleMenu: FC<UserType> = ({ user }) => {
-  // console.log(typeof user);
+const MiddleMenu = ({ user }: UserType) => {
   const NavLP = <NavLoginPanel user={user} />;
-  // console.log(NavLP);
   return (
     <div className="middle-menu">
       {/* {console.log("render")} */}
@@ -35,9 +35,9 @@ const MiddleMenu: FC<UserType> = ({ user }) => {
             </div>
           </CatOfPeople>
         </div>
-        <a className="middle-menu__logo-link" href="#">
+        <Link to={SHOP_ROUTE} className="middle-menu__logo-link">
           <img src={logo} className="middle-menu__logo"></img>
-        </a>
+        </Link>
         <ul className="middle-menu__right-list">
           <li>{NavLP}</li>
 
