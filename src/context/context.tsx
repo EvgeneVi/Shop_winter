@@ -1,25 +1,23 @@
-import { createContext, useState, FC } from "react";
+import { createContext, useState } from "react";
 import { ChildrenType } from "types/types";
+import { stateType, ctxType } from "types/context-types";
 
-type ProviderTypes = {
-  state: any;
-  setState: any;
-};
-type Store = {
-  city: string;
-};
+// type ProviderTypes = {
+//   state: any;
+//   setState: any;
+// };
+// type Store = {
+//   city: string;
+// };
 
-const stateCity = {
-  city: "Санкт-Петербург",
-};
+// const stateCity = {
+//   city: "Санкт-Петербург",
+// };
 
-export const MainContext = createContext<ProviderTypes | Store>({
-  ...stateCity,
-  // ...store,
-});
+export const MainContext = createContext({});
 
 export const MainProvider = ({ children }: ChildrenType) => {
-  const [state, setState] = useState<Store>({ ...stateCity });
+  const [state, setState] = useState<stateType | null>(null);
 
   return (
     <MainContext.Provider
@@ -32,4 +30,4 @@ export const MainProvider = ({ children }: ChildrenType) => {
     </MainContext.Provider>
   );
 };
-export type { ProviderTypes, Store };
+// export type { ProviderTypes, Store };
