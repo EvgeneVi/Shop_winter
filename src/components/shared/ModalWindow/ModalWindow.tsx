@@ -1,27 +1,29 @@
 // import React from "react";
 import { createPortal } from "react-dom";
 import "./ModalWindow.scss";
-import { FC, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
-type modalType = {
+type props = {
   children: React.ReactNode;
-  openModal: boolean;
+  closeWindow: (e: React.MouseEvent) => void;
+  classes?: null | string;
 };
 
-const ModalWindow: FC<modalType> = ({ children, openModal }) => {
-  const modalRef = useRef<HTMLDialogElement>(null);
+const ModalWindow = ({ children, closeWindow, classes = null }: props) => {
+  // const modalRef = useRef<HTMLDialogElement>(null);
 
-  useEffect(() => {
-    if (!modalRef.current) return;
-
-    if (openModal) modalRef.current.showModal();
-    else modalRef.current.close();
-  }, [openModal]);
+  // useEffect(() => {
+  //   if (modalRef.current) modalRef.current.showModal();
+  // }, []);
 
   return createPortal(
-    <dialog className="modal-window" ref={modalRef}>
-      {children}
-    </dialog>,
+    <>
+      <div className="modal-window__backdrop" onClick={closeWindow}></div>
+      <dialog className={classes || "modal-window"} /*ref={modalRef}*/ open>
+        {children}
+        <div className="modal-window__close" onClick={closeWindow}></div>
+      </dialog>
+    </>,
     document.body
   );
 };

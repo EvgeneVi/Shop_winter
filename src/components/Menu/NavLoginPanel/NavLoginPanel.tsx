@@ -1,11 +1,11 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import { UserType } from "types/types";
 import { FormContainerReg } from "components/shared/Forms";
 import ModalWindow from "components/shared/ModalWindow/ModalWindow";
 import Button from "components/shared/Button/Button";
 import "./NavLoginPanel.scss";
 
-const NavLoginPanel: FC<UserType> = ({ user }) => {
+const NavLoginPanel = ({ user }: UserType) => {
   const [state, setState] = useState({
     openWindow: false,
     typeFormReg: false,
@@ -89,13 +89,12 @@ const NavLoginPanel: FC<UserType> = ({ user }) => {
         </>
       )}
       {state.openWindow && (
-        <ModalWindow openModal={state.openWindow}>
-          <FormContainerReg
-            openWindowlhandler={openWindowlhandler}
-            setTypeForm={setTypeForm}
-            typeFormReg={state.typeFormReg}
-          />
-        </ModalWindow>
+        <FormContainerReg
+          openWindowlhandler={openWindowlhandler}
+          setTypeForm={setTypeForm}
+          typeFormReg={state.typeFormReg}
+        />
+        // </ModalWindow>
       )}
     </div>
   );

@@ -1,6 +1,8 @@
-@import "../../../assets/styles/variables";
+@import "assets/styles/variables";
 
-$Slwidth: min(100vw, 1680px);
+$Slwidth: min(100vw - 17px, 1680px);
+// $Slwidth: min(100vw - (100vw - 100%), 1680px);
+
 $Slheight: clamp(270px, calc(100vw - 848px), 482px);
 .advertising-slide {
   width: $Slwidth;

@@ -6,12 +6,10 @@ import Button from "components/shared/Button/Button";
 import Input from "components/shared/Input/Input";
 
 interface FormAuthType extends FormUserContainerType {
-  closeWindow: (e: React.MouseEvent) => void;
+  // closeWindow: (e: React.MouseEvent) => void;
   restorePass: boolean;
   forgotPassAction: () => void;
   time: {
-    // start: boolean;
-
     sec: string;
     msec: string;
   };
@@ -19,10 +17,9 @@ interface FormAuthType extends FormUserContainerType {
 }
 const FormAuth: FC<FormAuthType> = (props) => {
   const {
-    closeWindow,
+    // closeWindow,
     setTypeForm,
     typeFormReg,
-
     restorePass,
     forgotPassAction,
     time,
@@ -53,7 +50,7 @@ const FormAuth: FC<FormAuthType> = (props) => {
           Регистрация
         </Button>
       </div>
-      <CloseBtn closeWindow={closeWindow} />
+      {/* <CloseBtn closeWindow={closeWindow} /> */}
       <div className="wrap-forms">
         {!restorePass ? (
           <>

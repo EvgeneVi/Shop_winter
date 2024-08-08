@@ -1,8 +1,9 @@
-import { FC, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { FormUserContainerType } from "types/types";
 import Timer from "utils/timer";
 import FormAuth from "../FormAuth/FormAuth";
 import "./FormContainerReg.scss";
+import ModalWindow from "components/shared/ModalWindow/ModalWindow";
 
 type FormUserType = {
   restorePass: boolean;
@@ -17,11 +18,12 @@ type FormUserType = {
 interface FormContType extends FormUserContainerType {
   openWindowlhandler: (e?: boolean) => (e: React.MouseEvent) => void;
 }
-const FormContainerReg: FC<FormContType> = ({
+
+const FormContainerReg = ({
   openWindowlhandler,
   setTypeForm,
   typeFormReg,
-}) => {
+}: FormContType) => {
   const [state, setState] = useState<FormUserType>({
     restorePass: false,
     timer: { timerObj: null, time: { sec: "00", msec: "00" } },
@@ -76,17 +78,20 @@ const FormContainerReg: FC<FormContType> = ({
       timerObj.startTimer();
     }
   }, [state.timer.timerObj]);
-
   return (
-    <FormAuth
-      forgotPassAction={forgotPassAction}
-      restorePass={state.restorePass}
+    <ModalWindow
+      classes="modal-window modal-form-auth"
       closeWindow={openWindowlCustomAction}
-      time={{ ...state.timer.time }}
-      startTimer={startTimerAction}
-      setTypeForm={setTypeForm}
-      typeFormReg={typeFormReg}
-    />
+    >
+      <FormAuth
+        forgotPassAction={forgotPassAction}
+        restorePass={state.restorePass}
+        time={{ ...state.timer.time }}
+        startTimer={startTimerAction}
+        setTypeForm={setTypeForm}
+        typeFormReg={typeFormReg}
+      />
+    </ModalWindow>
   );
 };
 export default FormContainerReg;

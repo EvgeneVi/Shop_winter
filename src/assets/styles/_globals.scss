@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@use "variables" as m;
 @font-face {
   font-family: "Grtsk Peta";
   src: local("Grtsk Peta"),
@@ -6,6 +6,9 @@
     url("../fonts/GrtskPeta-Medium.woff") format("woff"),
     url("../fonts/GrtskPeta-Medium.ttf") format("ttf"),
     url("../fonts/GrtskPeta-Medium.eot") format("eot");
+}
+html {
+  font-size: 16px;
 }
 * {
   font-family: "Grtsk Peta";
@@ -25,8 +28,8 @@ li {
   list-style: none;
 }
 body:has(dialog[open]) {
-  @media screen and (min-width: $bp_xl) {
-    overflow: hidden;
+  overflow: hidden;
+  @media screen and (min-width: m.$bp_xl) {
     padding-right: 17px;
   }
 }

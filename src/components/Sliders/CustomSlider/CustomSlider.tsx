@@ -42,24 +42,24 @@ function CustomSlider({
     end: 1,
   });
 
-  const a = state.slider_w;
+  // const a = state.slider_w;
   const { slider_w, item_w, counter, items, max, end, dur } = state;
 
   const float = (val: number) => parseFloat(val?.toFixed(4));
 
   const onresizeWidth = ({
     borderBoxSize,
-    target: { firstChild: fChild },
+    target: { firstChild: wrap },
   }: {
     borderBoxSize: any[];
     target: { firstChild: HTMLElement };
   }) => {
-    const slider_w = borderBoxSize[0].inlineSize,
-      item_w = fChild.getBoundingClientRect().width / fChild.childElementCount;
+    const slider_w = ~~borderBoxSize[0].inlineSize,
+      item_w = ~~(wrap.getBoundingClientRect().width / wrap.childElementCount);
 
     let { counter, max, items, end } = state;
 
-    const sum_vw = Math.floor(slider_w / item_w);
+    const sum_vw = ~~(slider_w / item_w);
     const childsList = children as React.ReactNode[];
 
     if (sum_vw > 0 && sum_vw < childsList.length) {
@@ -153,9 +153,9 @@ function CustomSlider({
 
   let start_offset = 0;
 
+  const pureSlide = Math.floor(slider_w / item_w) * item_w;
   if (infinity && max > 0) {
-    start_offset =
-      (slider_w - Math.floor(slider_w / item_w) * item_w) / 2 - item_w;
+    start_offset = (slider_w - pureSlide) / 2 - item_w;
 
     if (counter === max) {
       setTimeout(() => setOffset("prev")(), 0);
@@ -164,17 +164,19 @@ function CustomSlider({
       setTimeout(() => setOffset("next")(), 0);
     }
   }
+  // console.log(Math.floor(slider_w / item_w) * item_w, slider_w);
   return (
     <section className={`custom-slider ${classes}`} ref={ref}>
       <div
         // onMouseMove={(e) => console.log(e)}
+        // style={{ "--my-css-var": 10 } as React.CSSProperties}
         className={`${classes}__wrap`}
         style={{
           transition: `${dur}s`,
           transform: `translateX(
             calc(${start_offset}px
             -
-            ${Math.floor(slider_w / item_w) * item_w * counter}px)`,
+            ${pureSlide * counter}px)`,
 
           /// если отступ отрицательный то он равен 0 PX!
         }}

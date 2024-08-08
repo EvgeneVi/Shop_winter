@@ -1,18 +1,46 @@
 @import "../../../assets/styles/variables.scss";
 .modal-window {
-  //   display: flex;
+  z-index: 9999;
+  position: absolute;
   outline: none;
   background-color: transparent;
   margin: 0 auto;
-  // left: -17px;
   border: 0;
   overflow: hidden;
-  // & > :first-child {
-  //   display: flex;
+  // &::backdrop {
+  //   background-color: black;
+  //   opacity: 0.6;
   // }
-  &::backdrop {
-    background-color: black;
-    opacity: 0.6;
+  :is(&, &__backdrop) {
+    position: fixed;
+  }
+  &__backdrop {
+    background-color: rgb(0, 0, 0, 0.6);
+    z-index: 9998;
+    // position: fixed;
+    inset: 0;
+  }
+  &__close {
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.2225em;
+    height: 2.2225em;
+    background-color: #000;
+    font-size: 18px;
+    &::after {
+      text-align: center;
+      content: "✕";
+      color: white;
+      width: 1em;
+      height: 1em;
+      line-height: 1;
+    }
+
+    &.small {
+    }
   }
   @media screen and (min-width: $bp_xl) {
     & {

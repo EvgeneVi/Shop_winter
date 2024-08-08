@@ -30,7 +30,7 @@ export default function Home() {
       />
       <Brands />
       <DiscountMain />
-      <SliderBlog />
+      {/* <SliderBlog /> */}
       <BenefitsBlock />
       <Outlet />
     </>

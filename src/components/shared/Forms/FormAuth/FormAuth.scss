@@ -1,20 +1,22 @@
-@import "../../../../assets/styles/variables.scss";
+@import "assets/styles/variables.scss";
+.modal-form-auth {
+  top: 230px;
+  & .dialog-form + .modal-window__close {
+    top: 37px;
+    right: 40px;
+  }
+  & .dialog-form.small + .modal-window__close {
+    top: 29px;
+    right: 25px;
+  }
+}
 .dialog-form {
   display: flex;
   position: relative;
-  margin-top: 230px;
   background-color: transparent;
   flex-direction: column;
   & * {
     font-family: $font;
-  }
-  & .modal-window__close {
-    top: 37px;
-    right: 40px;
-    &.small {
-      top: 29px;
-      right: 25px;
-    }
   }
 }
 .dialog-form.small {
@@ -79,8 +81,7 @@
   flex-basis: 0;
   flex-grow: 1;
   // margin-top: 2px;
-  &.auth,
-  &.restore-pass {
+  &:is(.auth, .restore-pass) {
     background-color: white;
   }
   &.regist {
@@ -135,32 +136,33 @@
   }
 }
 @media screen and (min-width: $bp_xl) {
-  .dialog-form.small {
-    & .modal-window__close {
-      top: 29px;
-      right: 25px;
-      background-color: transparent;
-      &::after {
-        color: #000;
-        font-weight: bold;
-      }
+  .modal-form-auth .dialog-form.small + .modal-window__close {
+    top: 29px;
+    right: 25px;
+    background-color: transparent;
+    &::after {
+      color: #000;
+      font-weight: bold;
     }
   }
 }
 @media screen and (max-width: $bp_xl) {
+  .modal-form-auth {
+    & :is(.dialog-form, .dialog-form.small) + .modal-window__close {
+      font-size: 13.5px;
+      top: 22px;
+      right: 20px;
+    }
+  }
+
   .dialog-form {
-    &.small .wrap-forms,
-    .wrap-forms {
+    &:is(&:not(.small), .small) .wrap-forms {
+      //со small и без
       width: 371px;
       height: 100%;
     }
     &:not(.small) .types-form {
       display: flex;
-    }
-    & .modal-window__close {
-      font-size: 13.5px;
-      top: 22px;
-      right: 20px;
     }
   }
 
@@ -170,8 +172,7 @@
       display: none;
     }
   }
-  .form-login.auth,
-  .form-login.regist {
+  .form-login:is(.auth, .regist) {
     display: none;
     background-color: white;
     & label:first-of-type {
