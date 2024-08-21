@@ -1,35 +1,61 @@
-@import "../../../assets/styles/variables";
+@use "assets/styles/_variables" as size;
+@use "assets/styles/_functions" as *;
+
 .down-menu {
   display: flex;
+  position: relative;
   background-color: #f9f9f9;
   height: 60px;
   justify-content: center;
+
   &__wrap {
-    width: 1360px;
+    width: min(100%, 1360px);
     display: flex;
     align-items: center;
     & ul {
       display: flex;
       column-gap: 25px;
-      // & > li {
-      //   &:last-of-type a {
-      //     color: red;
-      //   }
-      // }
+    }
+    & > .cat-of-people {
+      display: none;
     }
   }
 
-  @media screen and (max-width: $bp_xxl) {
+  @media screen and (max-width: size.$bp_xxl) {
     &__wrap {
-      width: auto;
-      & > ul {
-        font-size: 12px;
+      justify-content: center;
+      & .cat-of-product {
+        font-size: rem(12.5);
       }
     }
   }
-  @media screen and (max-width: $bp_xl) {
-    & {
-      display: none;
+  @media screen and (max-width: size.$bp_xl) {
+    background-color: initial;
+    border-top: 6px solid #f2f2f2;
+    justify-content: space-between;
+    &__wrap > .cat-of-people {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 clamp(20px, 30vw - rem(120), 150px);
+      width: inherit;
+      color: #bdbdbd;
+      & li.active {
+        color: black;
+      }
+    }
+    &__wrap > .cat-of-product {
+      position: fixed;
+      width: var(--drop-nav-width);
+      height: 100%;
+      font-size: rem(14);
+      & li {
+        padding-left: 20px;
+        &::after {
+          position: absolute;
+          content: url("assets/img/navbar/array-right.png");
+          right: rem(18);
+        }
+      }
     }
   }
 }

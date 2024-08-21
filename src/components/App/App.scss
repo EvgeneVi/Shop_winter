@@ -1,7 +1,6 @@
-@import "../../assets/styles/variables";
+@use "assets/styles/variables" as main;
 #App {
-  max-width: $max-w;
-
+  max-width: main.$max-w;
   margin: 0 auto;
   overflow: hidden;
 }

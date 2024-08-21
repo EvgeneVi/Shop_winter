@@ -1,8 +1,8 @@
 import useLocation from "hooks/useLocation";
 import "./NavLocation.scss";
 export default function NavLocation() {
-  const { location } = useLocation();
-  console.log(location);
+  let { location = "Санкт-Петербург" } = useLocation();
+  // console.log(location);
   return (
     <ul className="nav-location">
       <li>

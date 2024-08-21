@@ -9,12 +9,14 @@ import Menu from "components/Menu/Menu";
 import "assets/styles/_globals.scss";
 import "assets/styles/_icons.scss";
 import "./App.scss";
+import { useScrollBarWidth } from "hooks/useScrollBarWidth";
 
 function App() {
   // console.log(props);
   // const [count, setCount] = useState(0)
   const [dataUser, setDataUser] = useState<UserType>({ user: false });
-
+  const widthScroll = useScrollBarWidth();
+  console.log(widthScroll);
   useEffect(() => {
     // console.log("useEffect");
     const { getUser } = new loginService();
@@ -25,7 +27,7 @@ function App() {
 
   return (
     <>
-      <header>
+      <header style={{ "--widthScroll": widthScroll } as React.CSSProperties}>
         <Menu {...dataUser} />
       </header>
       <main>

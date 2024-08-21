@@ -1,12 +1,199 @@
-// @import "../../assets/styles/globals.scss";
-@import "../../assets/styles/variables.scss";
+@use "assets/styles/_variables" as nav;
+@use "assets/styles/_functions" as *;
+@use "components/Categories/CatOfProducts/CatOfProducts" as cat-h;
+
+// $middle-menu-height: clamp(60px, 13vw, 94px);
+
 #Menu {
-  font-family: "Grtsk Peta";
+  --drop-nav-width: #{rem(320)};
+  --middle-menu-height: clamp(60px, 13vw, 94px);
+
   letter-spacing: -0.24px;
-  & > * > * {
-    @media screen and (min-width: $bp_xl) {
-      box-sizing: initial;
-      padding: 0 15px;
+  position: relative;
+  z-index: 999;
+}
+.nav-burger-btn {
+  display: none;
+  position: fixed;
+  z-index: 4;
+  left: 0;
+  transform: translateX(rem(20));
+  width: rem(30);
+  height: var(--middle-menu-height);
+  pointer-events: none;
+  :is(&__lines, &__backdrop) {
+    pointer-events: auto;
+  }
+  &__lines {
+    position: relative;
+    cursor: pointer;
+    height: rem(22);
+
+    & > span,
+    &::after,
+    &::before {
+      background-color: black;
+      width: 100%;
+      height: rem(4);
+    }
+    &::after,
+    &::before {
+      position: absolute;
+      content: "";
+    }
+    &::before {
+      top: 0;
+    }
+    &::after {
+      bottom: 0;
+    }
+  }
+  &__backdrop {
+    display: none;
+    position: absolute;
+    content: "";
+    width: 100vw;
+    height: 100vh;
+    top: var(--middle-menu-height);
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+// @media (hover: hover) {
+//   #Menu {
+//     --test: var(--widthScroll);
+//   }
+// }
+@media screen and (min-width: nav.$bp_xl) {
+  #Menu > * > * {
+    box-sizing: initial;
+    padding: 0 15px;
+  }
+}
+@media screen and (max-width: nav.$bp_xl) {
+  #Menu {
+    //позиционирование блоков меню в девайсной версии
+    // padding-top: var(--test);
+    $start-pos-animation: translateX(-100vw);
+    $user-panel-h: #{rem(185)};
+    $location-panel-h: #{rem(102)};
+
+    // container-type: size;
+    // @container (min-width: 100vw) {
+    //   --test: var(--widthScroll);
+    //   .nav-burger-btn {
+    //     background-color: red;
+    //   }
+    // }
+    @for $i from 1 through 13 {
+      &:has(.down-menu .cat-of-product[data-count="#{$i}"]) {
+        $list-h: calc(cat-h.$height-item * #{$i});
+        $drop-all-h: calc(
+          #{$list-h} +
+            var(--middle-menu-height) +
+            $location-panel-h +
+            $user-panel-h
+        );
+
+        --count: calc(#{$list-h} + min(100vh - (#{$drop-all-h}), 0rem));
+      }
+    }
+    &:before,
+    &::after {
+      position: fixed;
+      content: "";
+      background-color: white;
+    }
+    &:before {
+      inset: 0 auto auto 0;
+      height: var(--middle-menu-height);
+      width: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    &::after {
+      width: var(--drop-nav-width);
+      inset: var(--middle-menu-height) auto 0 0;
+      transform: $start-pos-animation;
+    }
+    &:has(.nav-burger-btn.active)::after {
+      z-index: 4;
+      // left: 0;
+      transform: translateX(0);
+      transition: transform 0.3s;
+    }
+    .nav-burger-btn {
+      display: block;
+      &__lines {
+        display: flex;
+        align-items: center;
+      }
+      &.active {
+        $offset: rem(83);
+        transform: translateX(calc(100vw - $offset - var(--widthScroll)));
+        transition: transform 0.3s;
+        & .nav-burger-btn__backdrop {
+          display: block;
+          // left: calc(-100vw + $offset + var(--drop-nav-width));
+          transform: translateX(calc(-100vw + $offset + var(--drop-nav-width)));
+        }
+        & ~ .middle-menu .search-btn {
+          // left: calc(100% - 45px);
+          // padding: rem(var(--widthScroll));
+          transform: translateX(calc(100vw - 45px - var(--widthScroll)));
+          transition: transform 0.3s;
+        }
+
+        :is(
+            & ~ .up-menu .nav-location,
+            & ~ .middle-menu :is(.middle-menu__categories, .nav-login-panel),
+            & ~ .down-menu .cat-of-product
+          ) {
+          transform: translateX(0);
+          transition: transform 0.3s;
+        }
+      }
+    }
+
+    :is(& .nav-location, & .nav-login-panel) {
+      z-index: 6;
+    }
+    & .middle-menu__categories {
+      transform: $start-pos-animation;
+    }
+    & .cat-of-product {
+      z-index: 5;
+      top: var(--middle-menu-height);
+      left: 0;
+      transform: $start-pos-animation;
+      height: var(--count);
+      overflow: auto;
+    }
+    & .nav-login-panel {
+      top: calc(var(--middle-menu-height) + var(--count));
+      left: 0;
+      transform: $start-pos-animation;
+    }
+    & .nav-location {
+      top: calc(var(--middle-menu-height) + var(--count) + $user-panel-h);
+      left: 0;
+      transform: $start-pos-animation;
+    }
+  }
+}
+@media screen and (max-width: nav.$bp_sm) {
+  .nav-burger-btn {
+    width: rem(20);
+    &__lines {
+      height: rem(14);
+
+      & > span,
+      &::after,
+      &::before {
+        background-color: black;
+        width: 100%;
+        height: rem(2);
+      }
     }
   }
 }

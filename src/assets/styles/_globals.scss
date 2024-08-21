@@ -9,6 +9,13 @@
 }
 html {
   font-size: 16px;
+  scrollbar-gutter: stable;
+  // overflow-y: overlay;
+}
+body {
+  // overflow-y: overlay;
+  // position: relative;
+  // transform: translateX(0);
 }
 * {
   font-family: "Grtsk Peta";
@@ -27,11 +34,12 @@ button {
 li {
   list-style: none;
 }
+
 body:has(dialog[open]) {
   overflow: hidden;
-  @media screen and (min-width: m.$bp_xl) {
-    padding-right: 17px;
-  }
+  // padding-right: 10px;
+  // @media screen and (min-width: m.$bp_xl) {
+  // }
 }
 main {
   // overflow: hidden;
@@ -41,4 +49,16 @@ main {
   align-content: center;
   font-size: clamp(21px, 2.5vw, 32px);
   margin: 0 calc(20px - clamp(0px, 100vw - 1340px, 20px));
+}
+
+// @media screen and (min-width: m.$bp_xl) {
+//   html {
+//     scrollbar-gutter: stable;
+//   }
+// }
+
+@media screen and (max-width: m.$bp_xl) {
+  body:has(#Menu .nav-burger-btn.active) {
+    overflow: hidden;
+  }
 }

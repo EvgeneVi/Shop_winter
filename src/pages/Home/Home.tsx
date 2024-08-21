@@ -1,3 +1,4 @@
+import "./Home.scss";
 import DiscountMain from "components/DiscountMain/DiscountMain";
 import Brands from "components/Brands/Brands";
 import SliderBlog from "components/Sliders/SliderBlog/SliderBlog";
@@ -23,14 +24,14 @@ export default function Home() {
   return (
     <>
       <SliderHome />
-      <CatOfProducts
-        mobile={true}
-        showMore={true}
-        title={"Популярные категории"}
-      />
+      <section className="popular-categories">
+        <h2>Популярные категории</h2>
+        <CatOfProducts showMore={true} />
+      </section>
+
       <Brands />
       <DiscountMain />
-      {/* <SliderBlog /> */}
+      <SliderBlog />
       <BenefitsBlock />
       <Outlet />
     </>

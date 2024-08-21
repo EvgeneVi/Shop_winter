@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { UserType } from "types/types";
 import { FormContainerReg } from "components/shared/Forms";
-import ModalWindow from "components/shared/ModalWindow/ModalWindow";
 import Button from "components/shared/Button/Button";
 import "./NavLoginPanel.scss";
 

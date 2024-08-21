@@ -1,46 +1,37 @@
 @use "assets/styles/_functions" as *;
+@use "assets/styles/variables" as main;
 
-@import "assets/styles/variables";
-@keyframes appear {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.8;
-  }
-}
-$navVh: clamp(60px, 13vw, 94px);
 .middle-menu {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   position: relative;
+  height: var(--middle-menu-height);
   &__wrap {
     background-color: #ffffff;
-    height: $navVh;
+    height: inherit;
     letter-spacing: -0.28px;
     align-items: center;
     width: min(100%, 1360px);
     display: flex;
     justify-content: center;
-    column-gap: 26px;
+    column-gap: 25px;
   }
-  &__left-list {
+  &__categories {
     display: flex;
-    z-index: 1;
     & > ul {
       margin: auto 0;
       column-gap: 25px;
       & > li {
         position: relative;
-        &:is(/*:hover,*/ .active) {
+        &.active {
           &:after {
             position: absolute;
             bottom: -10px;
             left: 0;
             content: "";
             width: 100%;
-            border-bottom: 2px solid $nav-background;
+            border-bottom: 2px solid main.$nav-background;
             animation: line 0.2s;
           }
         }
@@ -51,21 +42,20 @@ $navVh: clamp(60px, 13vw, 94px);
     margin: 0 auto;
     display: flex;
     align-items: center;
-    z-index: 2;
+    z-index: 3;
   }
   &__logo {
     width: clamp(150px, 24vw, 242.5px);
   }
-  &__right-list {
+  &__user-options {
     display: flex;
     column-gap: 25px;
     justify-content: end;
   }
-  :where(&__right-list > li, & .search-btn, & .nav-login-panel) {
+  :where(&__user-options > li, & .search-btn, & .nav-login-panel) {
     font-size: rem(8);
     text-transform: uppercase;
     letter-spacing: 0.259px;
-    // font-weight: bold;
     position: relative;
 
     & > a {
@@ -78,136 +68,29 @@ $navVh: clamp(60px, 13vw, 94px);
       color: inherit;
     }
   }
-  &__categories {
-    display: none;
-  }
-  &__drop {
-    position: relative;
-    display: none;
-    height: max(100%, calc(100vh - $navVh));
-    width: 320px;
-    background-color: #fff;
-    & aside {
-      width: 100%;
-      height: calc(100vh - $navVh);
-      overflow-y: auto;
-    }
-    & .cat-of-product li {
-      padding-right: 20px;
-    }
-  }
-  &__burger-btn {
-    display: none;
-    left: 20px;
-    cursor: pointer;
-    position: absolute;
-    background-color: inherit;
-    border-top: 4px solid black;
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 4px solid black;
-    width: 30px;
-    height: 22px;
-    &::before {
-      display: inherit;
-      content: "";
-      border: 2px solid black;
-    }
-    &::after {
-      display: none;
-      position: absolute;
-      content: "";
-      top: calc($navVh / 2 + 100% / 2);
-      right: calc(-106px + 100% + 23px);
-      height: 100vh;
-      opacity: 0;
-      background-color: black;
-      width: calc(100vw - 320px);
-      animation: appear 0s forwards 0.3s;
-    }
-  }
 
-  @media screen and (max-width: $bp_xl) {
-    & {
-      height: calc($navVh + 61px);
-    }
-    &__wrap {
+  @media screen and (max-width: main.$bp_xl) {
+    &__wrap > * {
       position: fixed;
-      z-index: 999;
-    }
-    &__burger-btn {
-      display: block;
-      z-index: 2;
-      &.active {
-        left: calc(100% - 83px);
-        transition: 0.3s;
-        &::after {
-          display: block;
-        }
-      }
-      &.active + &__left-list {
-        left: 0;
-        transition: 0.3s;
-      }
-      &.active + &__left-list {
-        left: 0;
-        transition: 0.3s;
-      }
     }
 
-    &__burger-btn.active + &__left-list {
-      left: 0;
-      transition: 0.3s;
-    }
-    &__burger-btn.active ~ .search-btn {
-      left: calc(100% - 45px);
-      transition: 0.3s;
-    }
-
-    &__drop {
-      display: flex;
-    }
-
-    &__categories {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-top: 6px solid #f2f2f2;
-      padding: 0 5px;
-      margin-top: auto;
-      width: 100%;
-      height: 55px;
-      color: #bdbdbd;
-      > ul {
-        padding: 0 clamp(0px, calc(20vw - 85px), 120px);
-        justify-content: space-between;
-        flex-grow: 2;
-        & > li.active {
-          color: black;
-        }
-      }
-    }
-
-    :where(&__left-list, &__right-list, & .search-btn) {
-      position: absolute;
-    }
-    &__left-list > ul,
-    &__right-list {
+    :is(&__categories > ul, &__user-options) {
       column-gap: 20px;
     }
 
-    &__left-list {
-      left: -100%;
+    &__categories {
+      left: 0;
       width: 100%;
       background-color: #fff;
       height: inherit;
       display: grid;
       grid-template-columns: auto;
       grid-template-rows: 100%;
+      z-index: 3;
       & > ul {
         padding-left: 20px;
         & > li {
-          &:hover {
+          &.active {
             &::after {
               border-bottom: 4px black solid;
             }
@@ -215,38 +98,32 @@ $navVh: clamp(60px, 13vw, 94px);
         }
       }
     }
-    &__right-list {
-      right: 20px;
-      & > li:first-of-type {
-        display: none;
-      }
+    & .nav-login-panel {
+      position: fixed;
+      width: var(--drop-nav-width);
     }
-    & .search-btn {
-      left: 60px;
+    &__user-options {
+      // right: 0;
+      left: 0;
+      transform: translateX(calc(100vw - 100% - rem(20) - var(--widthScroll)));
       z-index: 2;
+    }
+
+    & .search-btn {
+      left: 0;
+      transform: translateX(rem(60));
+      z-index: 3;
       & a {
         margin-top: 16px;
       }
     }
   }
-  @media screen and (max-width: $bp_md) {
-    :where(&__right-list > li, & .search-btn) {
-      // color: transparent;
+  @media screen and (max-width: main.$bp_md) {
+    :where(&__user-options > li, & .search-btn) {
       font-size: 0;
     }
     &__logo-link {
-      z-index: 0;
-    }
-  }
-  @media screen and (max-width: $bp_sm) {
-    &__burger-btn {
-      border-top: 2px solid black;
-      border-bottom: 2px solid black;
-      width: 20px;
-      height: 13px;
-      &::after {
-        border: 1px solid black;
-      }
+      z-index: 2;
     }
   }
 }

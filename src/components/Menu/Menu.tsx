@@ -9,11 +9,23 @@ import "./Menu.scss";
 const Menu = (props: UserType) => {
   return (
     <nav id="Menu">
+      <button
+        className="nav-burger-btn"
+        onClick={({ target }) => {
+          if (target instanceof HTMLElement)
+            target.closest("button")?.classList.toggle("active");
+        }}
+      >
+        <div className="nav-burger-btn__lines">
+          <span></span>
+        </div>
+        <div className="nav-burger-btn__backdrop"></div>
+      </button>
       <UpMenu />
       <MiddleMenu {...props} />
       <DownMenu />
-      {/* <NavLocation /> */}
     </nav>
   );
 };
+
 export default Menu;

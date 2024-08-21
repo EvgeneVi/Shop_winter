@@ -7,7 +7,7 @@ function UpMenu() {
     <div className="up-menu">
       <div className="up-menu__wrap">
         <NavLocation />
-        <ul className="up-menu__right">
+        <ul className="up-menu__conditions-list">
           <li>
             <i className="icon-delivery"></i>
             <a href="#">Бесплатная доставка*</a>

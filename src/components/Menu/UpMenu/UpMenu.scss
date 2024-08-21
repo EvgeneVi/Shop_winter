@@ -1,38 +1,36 @@
-@import "../../../assets/styles/_variables.scss";
-@import "../../../assets/styles/_icons.scss";
+@use "assets/styles/_icons.scss" as *;
+@use "assets/styles/_variables.scss" as main;
+
 .up-menu {
   font-size: 12px;
-  // margin: 0 auto;
-  background: $nav-background;
+  background: main.$nav-background;
   display: flex;
-  height: 50px;
   justify-content: center;
+
   &__wrap {
     display: flex;
     width: 1360px;
     justify-content: space-between;
+    align-items: center;
+  }
+  &__conditions-list {
+    height: 50px;
+  }
+  & :where(.nav-location, &__conditions-list) {
+    display: flex;
+    column-gap: 26px;
 
-    & > ul {
+    & > li {
       display: flex;
-      column-gap: 26px;
-
-      & > li {
-        display: flex;
-        align-items: center;
-        color: #f2f2f2;
-        column-gap: 12px;
-        & > a {
-          color: inherit;
-        }
-      }
+      align-items: center;
+      color: #f2f2f2;
+      column-gap: 12px;
     }
   }
-  &__left {
-  }
-  &__btn-drop {
-  }
-  @media screen and (max-width: $bp_xxl) {
+
+  @media screen and (max-width: main.$bp_xxl) {
     & .nav-location {
+      column-gap: 25px;
       &__text {
         display: none;
       }
@@ -40,8 +38,33 @@
     & ul {
       column-gap: 20px;
     }
-  }
-  @media screen and (max-width: $bp_xl) {
-    display: none;
+
+    @media screen and (max-width: main.$bp_xl) {
+      & .nav-location {
+        position: fixed;
+        width: var(--drop-nav-width);
+        padding: 23px 20px 28px 50px;
+        flex-wrap: wrap;
+        row-gap: 23px;
+        & > li {
+          color: #000;
+          & i {
+            filter: brightness(0) saturate(100%);
+          }
+        }
+        & > li:first-of-type {
+          width: 100%;
+          column-gap: 15px;
+        }
+        & i.icon-local {
+          position: absolute;
+          right: calc(100% + 10px);
+        }
+      }
+
+      &__conditions-list {
+        display: none;
+      }
+    }
   }
 }

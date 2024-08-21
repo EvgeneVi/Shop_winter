@@ -2,7 +2,7 @@ import App from "components/App/App";
 
 import Catalogue from "pages/Catalogue";
 import { ErrorBoundary } from "pages/ErrorBoundary/ErrorBoundary";
-import Home, { getCatPeople } from "pages/Home";
+import Home, { getCatPeople } from "pages/Home/Home";
 import { createBrowserRouter } from "react-router-dom";
 import * as route from "utils/constants";
 

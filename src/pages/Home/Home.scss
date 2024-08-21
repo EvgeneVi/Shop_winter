@@ -1,0 +1,23 @@
+@use "assets/styles/_variables" as vars;
+@use "assets/styles/_functions" as *;
+
+section.popular-categories {
+  padding: 0 rem(20) 0 rem(20);
+  & h2 {
+    margin-top: rem(40);
+    text-align: center;
+    font-size: rem(21);
+    padding-bottom: rem(20);
+    border-bottom: rem(1) rgba(0, 0, 0, 0.08) solid;
+  }
+  & .cat-of-product {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: vars.$bp_xl) {
+  section.popular-categories {
+    display: none;
+  }
+}
